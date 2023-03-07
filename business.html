@@ -11,6 +11,13 @@
       var lienzo = document.getElementById("lienzo");
       var ctx = lienzo.getContext("2d");
 
+      // Crear el fondo
+      var fondo = new Image();
+      fondo.src = "https://files.fm/f/x7su42xtb"; // imagen de fondo
+      fondo.onload = function() {
+        ctx.drawImage(fondo, 0, 0); // dibujar el fondo en el lienzo
+      };
+
       // Crear el personaje
       var personaje = {
         x: 50, // posición inicial en x
@@ -52,6 +59,7 @@
       // Actualizar el lienzo
       function actualizarLienzo() {
         ctx.clearRect(0, 0, lienzo.width, lienzo.height); // borrar el lienzo
+        ctx.drawImage(fondo, 0, 0); // dibujar el fondo
         dibujarPersonaje(); // dibujar el personaje
         requestAnimationFrame(actualizarLienzo); // actualizar el lienzo de forma continua
       }
