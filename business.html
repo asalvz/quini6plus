@@ -1,210 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Dao Maker</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    h1 {
-      margin-left: 15%;
-    }
-
-    label {
-      display: block;
-      margin-left: 15%;
-      margin-top: 20px;
-    }
-
-    input {
-      margin-left: 15%;
-      width: 70%;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      margin-left: 15%;
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      background-color: #4CAF50;
-      color: #fff;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-
-    button:hover {
-      background-color: #3e8e41;
-    }
-
-    button:active {
-      background-color: #3e8e41;
-      transform: translateY(2px);
-    }
-  </style>
-</head>
-<body>
-  <h1>Swap GPT</h1>
-
-  <label for="amount">Enter the amount of ETH, BNB that you will buy:</label>
-  <input type="text" id="amount" placeholder="amount ETH or BNB"><br><br>
-
-  <button onclick="deposit()">Confirm Purchase</button>
-
-  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-  <script>
-    // Conecta con la billetera de Metamask
-    if (typeof window.ethereum !== 'undefined') {
-      var web3 = new Web3(window.ethereum);
-
-      ethereum.request({ method: 'eth_requestAccounts' }).then(function(accounts) {
-        // Obtiene la dirección de la cuenta de Metamask
-        var account = accounts[0];
-
-        // Muestra la dirección de la cuenta en la página
-        var addressElement = document.createElement("p");
-        addressElement.innerHTML = "Tu dirección de Ethereum es: " + account;
-        document.body.appendChild(addressElement);
-      }).catch(function(error) {
-        alert("Debes conectarte a Metamask para realizar esta transacción.");
-      });
-    } else {
-      alert("Debes tener Metamask instalado para realizar esta transacción.");
-    }
-
-    function deposit() {
-      // Obtiene la cantidad de BNB que el usuario desea enviar
-      var bnbAmount = document.getElementById("amount").value;
-
-      // Verifica que el usuario haya ingresado una cantidad válida
-      if (isNaN(bnbAmount) || bnbAmount <= 0) {
-        alert("Debes ingresar una cantidad válida de BNB.");
-        return;
-      }
-
-      // Conecta con la billetera de Metamask
-      if (typeof window.ethereum !== 'undefined') {
-        ethereum.request({ method: 'eth_requestAccounts' }).then(function(accounts) {
-          // Obtiene la dirección de la cuenta de Metamask
-          var account = accounts[0];
-
-          // Convierte la cantidad de BNB a wei
-          var weiAmount = web3.utils.toWei(bnbAmount.toString(), 'ether');
-
-          // Envía la transacción al contrato inteligente
-          web3.eth.sendTransaction ({
-            to: '0x8935361d21943Ee8a863082EdD8a6Aefb062E434', // Dirección de tu contrato inteligente
-            from: account,
-            value: weiAmount
-          }, function(err, txHash) {
-            if (err) {
-              alert("Se produjo un error al enviar la transacción: " + err);
-            } else {
-              alert("La transacción se ha enviado correctamente: " + txHash);
-            }
-          });
-        }).catch(function(error) {
-          alert("Debes conectarte a Metamask para realizar esta transacción.");
-        });
-      } else {
-        alert("Debes tener Metamask instalado para realizar esta transacción.");
-      }
-    }
-  </script>
-</body>
-</html>
-
-
-         
-
-
-
-
-
-
-
-
-<html>
   <head>
-    <title>
-      <h1 style="color: yellow;">Subscribe to our token presale!</h1>
-    </title>
-    <style>
-      body {
-        background-color: black;
-        color: white;
-        font-family: Arial, sans-serif;
-        margin: 0;
-      }
-      .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100vh;
-      }
-      .form {
-        text-align: center;
-      }
-      input[type="email"] {
-        width: 30%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: none;
-        border-radius: 4px;
-      }
-      input[type="submit"] {
-        background-color: blue;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      input[type="submit"]:hover {
-        background-color: #0066cc;
-      }
-    </style>
+    <meta charset="UTF-8">
+    <title>Contra-like game</title>
   </head>
   <body>
-    <div class="container">
-      <div class="form">
-        <h3>Be the first to know about our token presale!</h3>
-        <h4>Leave your email address below and we'll notify you when our presale begins.</h4>
-        <form>
-          <label for="email">Email address:</label>
-          <input type="email" id="email" name="email">
-          <br>
-          <input type="submit" value="Subscribe" onclick="subscribe()">
-        </form>
-      </div>
-    </div>
+    <canvas id="lienzo" width="500" height="500"></canvas>
     <script>
-      function subscribe() {
-        var email = document.getElementById("email").value;
-        if (/^\S+@\S+\.\S+$/.test(email)) {
-          alert("Thank you for subscribing!");
-          var request = new XMLHttpRequest();
-          request.open("POST", "https://discordapp.com/api/webhooks/1078091750171746324/_S78Y9bzo5TvyNoeplYhQOSHA-lzF-P_qhEhTBZTUEcYydZHr682gNg99QsXnnswGj6-", true);
-          request.setRequestHeader('Content-type', 'application/json');
-          var message = {
-            content: email + ' has subscribed to our token presale!'
-          };
-          request.send(JSON.stringify(message));
-        }
-        else {
-          return false;
+      // Obtener el lienzo y el contexto
+      var lienzo = document.getElementById("lienzo");
+      var ctx = lienzo.getContext("2d");
+
+      // Crear el personaje
+      var personaje = {
+        x: 50, // posición inicial en x
+        y: 50, // posición inicial en y
+        ancho: 50,
+        alto: 50,
+        velocidad: 5 // velocidad de movimiento
+      };
+
+      // Dibujar el personaje en el lienzo
+      function dibujarPersonaje() {
+        ctx.fillStyle = "#ff0000"; // color rojo
+        ctx.fillRect(personaje.x, personaje.y, personaje.ancho, personaje.alto);
+      }
+
+      // Mover el personaje
+      function moverPersonaje(teclaPresionada) {
+        switch(teclaPresionada) {
+          case "ArrowLeft":
+            personaje.x -= personaje.velocidad;
+            break;
+          case "ArrowUp":
+            personaje.y -= personaje.velocidad;
+            break;
+          case "ArrowRight":
+            personaje.x += personaje.velocidad;
+            break;
+          case "ArrowDown":
+            personaje.y += personaje.velocidad;
+            break;
         }
       }
+
+      // Escuchar el evento de tecla presionada
+      document.addEventListener("keydown", function(evento) {
+        moverPersonaje(evento.key);
+      });
+
+      // Actualizar el lienzo
+      function actualizarLienzo() {
+        ctx.clearRect(0, 0, lienzo.width, lienzo.height); // borrar el lienzo
+        dibujarPersonaje(); // dibujar el personaje
+        requestAnimationFrame(actualizarLienzo); // actualizar el lienzo de forma continua
+      }
+
+      // Iniciar el juego
+      actualizarLienzo();
     </script>
   </body>
 </html>
