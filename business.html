@@ -63,8 +63,8 @@
 		}
 
 		.speed {
-			color: #008cff;
-			font-size: 36px;
+			color: blue;
+			font-size: 48px;
 			font-weight: bold;
 			margin-bottom: 20px;
 			margin-top: 0;
@@ -86,7 +86,7 @@
 			<h3>Bot Avanzado</h3>
 			<p>Este bot simula un stake de Ethereum a una velocidad avanzada.</p>
 			<p>Inversión mínima: 0.05 ETH</p>
-			<p>Crecimiento en 60 minutos: <span class="speed">0.03</span> ETH</p>
+			<p>Crecimiento en 60 minutos: <span class="speed">0.00</span> ETH</p>
 			<img src="bot_avanzado.png" alt="Bot Avanzado">
 		</div>
 		<div class="card">
@@ -97,23 +97,19 @@
 			<img src="bot_premium.png" alt="Bot Premium">
 		</div>
 		<script>
-	// Función para simular el crecimiento del bot avanzado
-	function simulateGrowth() {
-		let investment = 0.05;
-		let growthRate = 0.00083333333; // (0.03 ETH / 60 minutos) / 60 segundos = 0.00083333333 ETH/segundo
-		let growth = 0;
-		let interval = setInterval(() => {
-			growth += growthRate;
-			investment += growthRate;
-			document.querySelector('.speed').innerHTML = growth.toFixed(2);
-			if (growth >= 0.03) {
-				clearInterval(interval);
-			}
-		}, 1000);
-	}
-
-	// Llamar a la función de simulación del bot avanzado al cargar la página
-	window.onload = simulateGrowth;
-</script>
+			// Func
+// Definir la función para actualizar la velocidad del Bot Avanzado
+function actualizarVelocidad() {
+// Obtener la velocidad aleatoria en el rango de 0 a 0.1
+var velocidad = Math.random() / 10;
+// Seleccionar el elemento span con la clase "speed"
+var spanVelocidad = document.querySelector(".speed");
+// Actualizar el contenido del elemento span con la velocidad generada
+spanVelocidad.innerHTML = velocidad.toFixed(2);
+}
+					// Llamar a la función actualizarVelocidad cada 5 segundos
+		setInterval(actualizarVelocidad, 5000);
+	</script>
+</div>
 </body>
 </html>
