@@ -1,71 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Contra-like game</title>
+    <title>Mi juego</title>
+    <style>
+      body {
+        background-color: #88c9ff;
+      }
+      #plataforma {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
+        background-color: #4b4b4b;
+      }
+      #personaje {
+        position: absolute;
+        bottom: 100px;
+        left: 50px;
+        width: 20px;
+        height: 40px;
+        background-color: #f00;
+      }
+    </style>
   </head>
   <body>
-    <canvas id="lienzo" width="500" height="500"></canvas>
+    <div id="plataforma"></div>
+    <div id="personaje"></div>
+
     <script>
-      // Obtener el lienzo y el contexto
-      var lienzo = document.getElementById("lienzo");
-      var ctx = lienzo.getContext("2d");
+      var personaje = document.getElementById("personaje");
 
-      // Crear el fondo
-      var fondo = new Image();
-      fondo.src = "https://files.fm/f/x7su42xtb"; // imagen de fondo
-      fondo.onload = function() {
-        ctx.drawImage(fondo, 0, 0); // dibujar el fondo en el lienzo
-      };
-
-      // Crear el personaje
-      var personaje = {
-        x: 50, // posición inicial en x
-        y: 50, // posición inicial en y
-        ancho: 50,
-        alto: 50,
-        velocidad: 5 // velocidad de movimiento
-      };
-
-      // Dibujar el personaje en el lienzo
-      function dibujarPersonaje() {
-        ctx.fillStyle = "#ff0000"; // color rojo
-        ctx.fillRect(personaje.x, personaje.y, personaje.ancho, personaje.alto);
-      }
-
-      // Mover el personaje
-      function moverPersonaje(teclaPresionada) {
-        switch(teclaPresionada) {
-          case "ArrowLeft":
-            personaje.x -= personaje.velocidad;
-            break;
-          case "ArrowUp":
-            personaje.y -= personaje.velocidad;
-            break;
-          case "ArrowRight":
-            personaje.x += personaje.velocidad;
-            break;
-          case "ArrowDown":
-            personaje.y += personaje.velocidad;
-            break;
+      // Función para saltar cuando se presiona la tecla "Espacio"
+      function saltar(event) {
+        if (event.code === "Space") {
+          personaje.style.bottom = "160px";
+          setTimeout(function() {
+            personaje.style.bottom = "100px";
+          }, 500);
         }
       }
 
-      // Escuchar el evento de tecla presionada
-      document.addEventListener("keydown", function(evento) {
-        moverPersonaje(evento.key);
-      });
-
-      // Actualizar el lienzo
-      function actualizarLienzo() {
-        ctx.clearRect(0, 0, lienzo.width, lienzo.height); // borrar el lienzo
-        ctx.drawImage(fondo, 0, 0); // dibujar el fondo
-        dibujarPersonaje(); // dibujar el personaje
-        requestAnimationFrame(actualizarLienzo); // actualizar el lienzo de forma continua
-      }
-
-      // Iniciar el juego
-      actualizarLienzo();
+      document.addEventListener("keydown", saltar);
     </script>
   </body>
 </html>
