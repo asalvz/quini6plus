@@ -7,24 +7,113 @@
 			background: linear-gradient(to right, #1d2671, #008cff, #00c6ff);
 			background-size: 200% 100%;
 			animation: gradient 10s ease infinite;
-		
 		}
 
 		@keyframes gradient {
-		0% {
-			background-position: 0% 50%;
+			0% {
+				background-position: 0% 50%;
+			}
+			50% {
+				background-position: 100% 50%;
+			}
+			100% {
+				background-position: 0% 50%;
+			}
 		}
-		50% {
-			background-position: 100% 50%;
-		}
-		100% {
-			background-position: 0% 50%;
-		}
-	}
-</style>
 
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			margin-top: 50px;
+		}
+
+		.card {
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+			padding: 20px;
+			margin: 20px;
+			width: 300px;
+			text-align: center;
+		}
+
+		h2 {
+			color: #fff;
+			font-size: 36px;
+			margin-top: 50px;
+			text-align: center;
+		}
+
+		h3 {
+			color: #008cff;
+			font-size: 24px;
+			margin-bottom: 20px;
+			margin-top: 0;
+			text-align: center;
+		}
+
+		p {
+			color: #333;
+			font-size: 16px;
+			line-height: 1.5;
+			margin-bottom: 20px;
+			margin-top: 0;
+			text-align: justify;
+		}
+
+		.speed {
+			color: #008cff;
+			font-size: 36px;
+			font-weight: bold;
+			margin-bottom: 20px;
+			margin-top: 0;
+			text-align: center;
+		}
+	</style>
 </head>
 <body>
-	<!-- Aquí va el contenido de la página -->
+	<h2>Contratar Bot de Trading</h2>
+	<div class="container">
+		<div class="card">
+			<h3>Bot Normal</h3>
+			<p>Este bot simula un stake de Ethereum a una velocidad normal.</p>
+			<p>Inversión mínima: 0.05 ETH</p>
+			<p>Crecimiento en 60 minutos: 0.02 ETH</p>
+			<img src="bot_normal.png" alt="Bot Normal">
+		</div>
+		<div class="card">
+			<h3>Bot Avanzado</h3>
+			<p>Este bot simula un stake de Ethereum a una velocidad avanzada.</p>
+			<p>Inversión mínima: 0.05 ETH</p>
+			<p>Crecimiento en 60 minutos: <span class="speed">0.03</span> ETH</p>
+			<img src="bot_avanzado.png" alt="Bot Avanzado">
+		</div>
+		<div class="card">
+			<h3>Bot Premium</h3>
+			<p>Este bot simula un stake de Ethereum a una velocidad premium.</p>
+			<p>Inversión mínima: 0.05 ETH</p>
+			<p>Crecimiento en 60 minutos: 0.04 ETH</p>
+			<img src="bot_premium.png" alt="Bot Premium">
+		</div>
+		<script>
+	// Función para simular el crecimiento del bot avanzado
+	function simulateGrowth() {
+		let investment = 0.05;
+		let growthRate = 0.00083333333; // (0.03 ETH / 60 minutos) / 60 segundos = 0.00083333333 ETH/segundo
+		let growth = 0;
+		let interval = setInterval(() => {
+			growth += growthRate;
+			investment += growthRate;
+			document.querySelector('.speed').innerHTML = growth.toFixed(2);
+			if (growth >= 0.03) {
+				clearInterval(interval);
+			}
+		}, 1000);
+	}
+
+	// Llamar a la función de simulación del bot avanzado al cargar la página
+	window.onload = simulateGrowth;
+</script>
 </body>
 </html>
