@@ -5,16 +5,32 @@
     <title>Bots Earn</title>
     <style>
       body {
-        background: linear-gradient(to bottom, #3399ff, #66ccff);
-        animation: bg-animation 5s infinite alternate;
+        background: #000000;
+        background-image: url("https://i.imgur.com/QWd7llN.png"), url("https://i.imgur.com/cKuF7lL.gif"), url("https://i.imgur.com/c6nW8oL.gif");
+        background-position: top center, bottom center, bottom center;
+        background-repeat: no-repeat, repeat-y, repeat-y;
+        background-attachment: fixed;
+        animation: bg-animation 20s infinite, bg-forest-animation 30s infinite;
       }
 
       @keyframes bg-animation {
         0% {
-          background-position: 0 0;
+          background-position-y: 0%;
         }
         100% {
-          background-position: 0 100%;
+          background-position-y: 100%;
+        }
+      }
+
+      @keyframes bg-forest-animation {
+        0% {
+          background-position-x: 0%;
+        }
+        50% {
+          background-position-x: 50%;
+        }
+        100% {
+          background-position-x: 100%;
         }
       }
 
