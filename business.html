@@ -2,174 +2,46 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Alquiler de Bots de Stake en Ethereum</title>
+    <title>Bots Earn</title>
     <style>
-      * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+      body {
+        background: linear-gradient(to bottom, #3399ff, #66ccff);
+        animation: bg-animation 5s infinite alternate;
+      }
 
-body {
-  background-color: #1d2431;
-  font-family: sans-serif;
-}
+      @keyframes bg-animation {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 0 100%;
+        }
+      }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
+      h1 {
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 100px;
+        color: #44dddd;
+        text-shadow: 2px 2px 2px #444;
+        animation: title-animation 2s ease-out;
+        opacity: 0;
+      }
 
-h1 {
-  color: #fff;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.cards {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.card {
-  background-color: #fff;
-  color: #1d2431;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  width: 200px;
-  position: relative;
-}
-
-.card h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.card p.increment {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.card button {
-  background-color: #1d2431;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.normal .increment {
-  animation: increment-normal 10s linear infinite;
-}
-
-.fast .increment {
-  animation: increment-fast 5s linear infinite;
-}
-
-.super-fast .increment {
-  animation: increment-super-fast 2.5s linear infinite;
-}
-
-.premium .increment {
-  animation: increment-premium 20s linear infinite;
-}
-
-@keyframes increment-normal {
-  0% {
-    content: "Eth 0.0001";
-  }
-  100% {
-    content: "Eth 0.0100";
-  }
-}
-
-@keyframes increment-fast {
-  0% {
-    content: "Eth 0.0001";
-  }
-  100% {
-    content: "Eth 0.0100";
-  }
-}
-
-@keyframes increment-super-fast {
-  0% {
-    content: "Eth 0.0001";
-  }
-  100% {
-    content: "Eth 0.0100";
-  }
-}
-
-@keyframes increment-premium {
-  0% {
-    content: "Eth 0.0001";
-  }
-  100% {
-    content: "Eth 0.0200";
-  }
-}
-
+      @keyframes title-animation {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
     </style>
   </head>
   <body>
-    <div class="container">
-  <h1>Alquilar Bots de Stake en Ethereum</h1>
-  <div class="cards">
-    <div class="card normal">
-      <h2>Bot 1</h2>
-      <p class="increment"></p>
-      <button>Alquilar Bot</button>
-    </div>
-    <div class="card fast">
-      <h2>Bot 2</h2>
-      <p class="increment"></p>
-      <button>Alquilar Bot</button>
-    </div>
-    <div class="card super-fast">
-      <h2>Bot 3</h2>
-      <p class="increment"></p>
-      <button>Alquilar Bot</button>
-    </div>
-    <div class="card premium">
-      <h2>Bot PREMIUM</h2>
-      <p class="increment"></p>
-      <button>Alquilar Bot</button>
-    </div>
-  </div>
-</div>
-    const normalBotButton = document.querySelector('.normal button');
-const fastBotButton = document.querySelector('.fast button');
-const superFastBotButton = document.querySelector('.super-fast button');
-const premiumBotButton = document.querySelector('.premium button');
-
-normalBotButton.addEventListener('click', () => {
-  alert('Bot 1 alquilado.');
-});
-
-fastBotButton.addEventListener('click', () => {
-  alert('Bot 2 alquilado.');
-});
-
-superFastBotButton.addEventListener('click', () => {
-  alert('Bot 3 alquilado.');
-});
-
-premiumBotButton.addEventListener('click', () => {
-  alert('Bot PREMIUM alquilado.');
-});
-
-
+    <h1>Alquilar Bots de Trading</h1>
   </body>
 </html>
