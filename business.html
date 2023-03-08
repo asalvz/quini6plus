@@ -1,30 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Contrata tu Bot de Trading</title>
-    <style>
-      body {
-        background-color: #1c1c1c; /* Color de fondo oscuro */
-        background-image: linear-gradient(to right, #384aeb, #9b59b6); /* Gradiente de color */
-        animation: background 10s ease infinite alternate; /* Animación de fondo */
-      }
-      h1 {
-        font-family: Arial, sans-serif; /* Fuente del título */
-        font-size: 4rem; /* Tamaño del título */
-        color: #fff; /* Color del título */
-        text-align: center; /* Alineación del título */
-        margin-top: 20%; /* Espacio superior del título */
-        text-shadow: 2px 2px 4px #000; /* Sombra del título */
-      }
-      /* Animación de fondo */
-      @keyframes background {
-        0% { background-position: 0 0; }
-        100% { background-position: 100% 0; }
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Contrata tu Bot de Trading</h1>
-  </body>
+<head>
+  <title>Tarjetas de Bot</title>
+  <style>
+    /* Estilos CSS para la animación del botón */
+    .rent-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .rent-btn:hover {
+      background-color: #3e8e41;
+    }
+
+    /* Estilos CSS para las tarjetas de bot */
+    .bot-card {
+      display: inline-block;
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .normal {
+      background-color: #f2f2f2;
+    }
+
+    .fast {
+      background-color: #d9d9d9;
+    }
+
+    .premium-fast {
+      background-color: #bfbfbf;
+    }
+  </style>
+</head>
+<body>
+  <div class="bot-card normal">
+    <h3>Bot Normal</h3>
+    <p>Saldo de ETH: <span id="normal-balance">0.0001</span></p>
+    <button class="rent-btn">Alquilar</button>
+  </div>
+
+  <div class="bot-card fast">
+    <h3>Bot Fast</h3>
+    <p>Saldo de ETH: <span id="fast-balance">0.0001</span></p>
+    <button class="rent-btn">Alquilar</button>
+  </div>
+
+  <div class="bot-card premium-fast">
+    <h3>Bot Premium Fast</h3>
+    <p>Saldo de ETH: <span id="premium-balance">0.0001</span></p>
+    <button class="rent-btn">Alquilar</button>
+  </div>
+</body>
 </html>
