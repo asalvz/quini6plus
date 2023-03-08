@@ -70,6 +70,15 @@
 			margin-top: 0;
 			text-align: center;
 		}
+
+		.blue {
+			color: blue;
+		}
+
+		.large {
+			font-size: 48px;
+			font-weight: bold;
+		}
 	</style>
 </head>
 <body>
@@ -81,35 +90,25 @@
 			<p>Inversión mínima: 0.05 ETH</p>
 			<p>Crecimiento en 60 minutos: 0.02 ETH</p>
 			<img src="bot_normal.png" alt="Bot Normal">
+			<button>Alquilar</button>
 		</div>
 		<div class="card">
 			<h3>Bot Avanzado</h3>
 			<p>Este bot simula un stake de Ethereum a una velocidad avanzada.</p>
 			<p>Inversión mínima: 0.05 ETH</p>
-			<p>Crecimiento en 60 minutos: <span class="speed">0.00</span> ETH</p>
+			<p>Crecimiento en 60 minutos: <span class="speed blue large">0.00</span> ETH</p>
 			<img src="bot_avanzado.png" alt="Bot Avanzado">
+			<button>Alquilar</button>
 		</div>
 		<div class="card">
 			<h3>Bot Premium</h3>
-			<p>Este bot simula un stake de Ethereum a una velocidad premium.</p>
-			<p>Inversión mínima: 0.05 ETH</p>
-			<p>Crecimiento en 60 minutos: 0.04 ETH</p>
-			<img src="bot_premium.png" alt="Bot Premium">
-		</div>
-		<script>
-			// Func
-// Definir la función para actualizar la velocidad del Bot Avanzado
-function actualizarVelocidad() {
-// Obtener la velocidad aleatoria en el rango de 0 a 0.1
-var velocidad = Math.random() / 10;
-// Seleccionar el elemento span con la clase "speed"
-var spanVelocidad = document.querySelector(".speed");
-// Actualizar el contenido del elemento span con la velocidad generada
-spanVelocidad.innerHTML = velocidad.toFixed(2);
-}
-					// Llamar a la función actualizarVelocidad cada 5 segundos
-		setInterval(actualizarVelocidad, 5000);
-	</script>
+			<p>Este bot simula un stake de Ethereum a una velocidad premium</p>
+<p>Inversión mínima: 0.1 ETH</p>
+<p>Crecimiento en 60 minutos: <span class="speed blue large">0.00</span> ETH</p>
+<img src="bot_premium.png" alt="Bot Premium">
+<button>Alquilar</button>
 </div>
+</div>
+
 </body>
 </html>
