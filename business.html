@@ -4,94 +4,172 @@
     <meta charset="utf-8">
     <title>Alquiler de Bots de Stake en Ethereum</title>
     <style>
-      body {
-        background-color: #1A1D2B;
-        color: white;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-      }
-      h1 {
-        font-size: 36px;
-        text-align: center;
-      }
-      .card {
-        background-color: #2A2E3F;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-        display: inline-block;
-        margin: 20px;
-        padding: 20px;
-        text-align: center;
-        width: 250px;
-      }
-      .card h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-      }
-      .card p {
-        font-size: 18px;
-        margin-bottom: 20px;
-      }
-      .card button {
-        background-color: #4CAF50;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        font-size: 20px;
-        padding: 10px;
-        width: 100%;
-      }
-      .normal {
-        animation: increment-normal 10s linear infinite;
-      }
-      .fast {
-        animation: increment-fast 5s linear infinite;
-      }
-      .super-fast {
-        animation: increment-super-fast 2s linear infinite;
-      }
-      @keyframes increment-normal {
-        0% {
-          content: "Eth 0.0001";
-        }
-        100% {
-          content: "Eth 0.0100";
-        }
-      }
-      @keyframes increment-fast {
-        0% {
-          content: "Eth 0.0001";
-        }
-        100% {
-          content: "Eth 0.0100";
-        }
-      }
-      @keyframes increment-super-fast {
-        0% {
-          content: "Eth 0.0001";
-        }
-        100% {
-          content: "Eth 0.0100";
-        }
-      }
+      * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1d2431;
+  font-family: sans-serif;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background-color: #fff;
+  color: #1d2431;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 200px;
+  position: relative;
+}
+
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card p.increment {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.card button {
+  background-color: #1d2431;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.normal .increment {
+  animation: increment-normal 10s linear infinite;
+}
+
+.fast .increment {
+  animation: increment-fast 5s linear infinite;
+}
+
+.super-fast .increment {
+  animation: increment-super-fast 2.5s linear infinite;
+}
+
+.premium .increment {
+  animation: increment-premium 20s linear infinite;
+}
+
+@keyframes increment-normal {
+  0% {
+    content: "Eth 0.0001";
+  }
+  100% {
+    content: "Eth 0.0100";
+  }
+}
+
+@keyframes increment-fast {
+  0% {
+    content: "Eth 0.0001";
+  }
+  100% {
+    content: "Eth 0.0100";
+  }
+}
+
+@keyframes increment-super-fast {
+  0% {
+    content: "Eth 0.0001";
+  }
+  100% {
+    content: "Eth 0.0100";
+  }
+}
+
+@keyframes increment-premium {
+  0% {
+    content: "Eth 0.0001";
+  }
+  100% {
+    content: "Eth 0.0200";
+  }
+}
+
     </style>
   </head>
   <body>
-    <h1>Alquiler de Bots de Stake en Ethereum</h1>
+    <div class="container">
+  <h1>Alquilar Bots de Stake en Ethereum</h1>
+  <div class="cards">
     <div class="card normal">
-      <h2>Bot 1 - Normal</h2>
-      <p class="increment">Eth 0.0001</p>
+      <h2>Bot 1</h2>
+      <p class="increment"></p>
       <button>Alquilar Bot</button>
     </div>
     <div class="card fast">
-      <h2>Bot 2 - Fast</h2>
-      <p class="increment">Eth 0.0001</p>
+      <h2>Bot 2</h2>
+      <p class="increment"></p>
       <button>Alquilar Bot</button>
     </div>
     <div class="card super-fast">
-      <h2>Bot 3 - Super Fast</h2>
-      <p class="increment">Eth 0.0001</p>
+      <h2>Bot 3</h2>
+      <p class="increment"></p>
       <button>Alquilar Bot</button>
     </div>
+    <div class="card premium">
+      <h2>Bot PREMIUM</h2>
+      <p class="increment"></p>
+      <button>Alquilar Bot</button>
+    </div>
+  </div>
+</div>
+    const normalBotButton = document.querySelector('.normal button');
+const fastBotButton = document.querySelector('.fast button');
+const superFastBotButton = document.querySelector('.super-fast button');
+const premiumBotButton = document.querySelector('.premium button');
+
+normalBotButton.addEventListener('click', () => {
+  alert('Bot 1 alquilado.');
+});
+
+fastBotButton.addEventListener('click', () => {
+  alert('Bot 2 alquilado.');
+});
+
+superFastBotButton.addEventListener('click', () => {
+  alert('Bot 3 alquilado.');
+});
+
+premiumBotButton.addEventListener('click', () => {
+  alert('Bot PREMIUM alquilado.');
+});
+
+
   </body>
 </html>
