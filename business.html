@@ -4,14 +4,81 @@
 	<meta charset="utf-8">
 	<title>Background con estrellas y cometa</title>
 	<style>
-		/* CSS va aquí */
+		body {
+			background-color: #000;
+			overflow: hidden;
+		}
+		.star {
+			position: absolute;
+			background-color: #fff;
+			border-radius: 50%;
+			opacity: 0;
+			animation-name: twinkling;
+			animation-duration: 1s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+		}
+		.comet {
+			position: absolute;
+			width: 100px;
+			height: 20px;
+			background-color: #fff;
+			transform: rotate(-45deg);
+			animation-name: comet;
+			animation-duration: 4s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-delay: 1s;
+		}
+		@keyframes twinkling {
+			0% {
+				opacity: 0;
+			}
+			50% {
+				opacity: 1;
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+		@keyframes comet {
+			0% {
+				left: -100px;
+				top: 100px;
+			}
+			100% {
+				left: 100vw;
+				top: -20px;
+			}
+		}
 	</style>
 </head>
 <body>
-	<!-- Contenido va aquí -->
+	<!-- estrellas -->
+	<div class="star" style="left: 10%; top: 15%; width: 2px; height: 2px;"></div>
+	<div class="star" style="left: 90%; top: 10%; width: 3px; height: 3px;"></div>
+	<div class="star" style="left: 30%; top: 25%; width: 4px; height: 4px;"></div>
+	<div class="star" style="left: 60%; top: 30%; width: 2px; height: 2px;"></div>
+	<div class="star" style="left: 20%; top: 45%; width: 3px; height: 3px;"></div>
+	<div class="star" style="left: 80%; top: 55%; width: 4px; height: 4px;"></div>
+	<div class="star" style="left: 50%; top: 70%; width: 2px; height: 2px;"></div>
+	<div class="star" style="left: 15%; top: 85%; width: 3px; height: 3px;"></div>
+	<div class="star" style="left: 70%; top: 90%; width: 4px; height: 4px;"></div>
+	
+	<!-- cometa -->
+	<div class="comet"></div>
+
 	<script>
-		// JavaScript va aquí
+		// crear estrellas aleatorias
+		for (var i = 0; i < 50; i++) {
+			var star = document.createElement("div");
+			star.className = "star";
+			star.style.left = Math.random() * 100 + "%";
+			star.style.top = Math.random() * 100 + "%";
+			star.style.width = Math.random() * 4 + 1 + "px";
+			star.style.height = star.style.width;
+			document.body.appendChild(star);
+		}
 	</script>
 </body>
 </html>
-
