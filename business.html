@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Contratar Bot de Trading - Fondo Futurista</title>
@@ -51,6 +52,38 @@
 			margin-bottom: 20px;
 			margin-top: 0;
 			text-align: center;
+			position: relative;
+		}
+
+		h3.shine:after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: linear-gradient(to right, #00c6ff, #008cff);
+			opacity: 0;
+			transition: opacity 0.5s ease-in-out;
+			animation: shine 1s ease-in-out infinite;
+			z-index: 1;
+		}
+
+		h3:hover:after {
+			opacity: 0.2;
+		}
+
+		@keyframes shine {
+			0% {
+				opacity: 0;
+			}
+			50% {
+				opacity: 1;
+			}
+			100% {
+				opacity: 0;
+			}
 		}
 
 		p {
@@ -79,8 +112,34 @@
 			font-size: 48px;
 			font-weight: bold;
 		}
-	</style>
-</head>
+
+		button {
+			background-color: #008cff;
+			color: #fff;
+			padding: 10px 20px;
+			border-radius: 5px;
+			border: none;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.5s ease-in-out;
+			margin-top: 20px;
+		}
+
+		button:hover {
+			background-color: #00c6ff;
+		
+<button>Contratar Bot de Trading</button>
+</div>
+<div class="card">
+<h3 class="shine">Plan Premium</h3>
+<p>Este plan te ofrece todas las funcionalidades del plan básico, además de acceso a estrategias avanzadas y soporte personalizado las 24 horas del día.</p>
+<p class="speed">$<span class="blue">99</span>/mes</p>
+<button>Contratar Bot de Trading</button>
+</div>
+</div>
+
+</body>
+</html>
 <body>
 	<h2>Contratar Bot de Trading</h2>
 	<div class="container">
