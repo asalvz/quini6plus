@@ -84,20 +84,30 @@
 <body>
 	<h2>Contratar Bot de Trading</h2>
 	<div class="container">
+<div class="card">
+    <h3 class="shine">Bot Normal</h3>
+    <p>Este bot simula un stake de Ethereum a una velocidad normal.</p>
+    <p>Inversión mínima: 0.05 ETH</p>
+    <p>Crecimiento en 60 minutos: 0.02 ETH</p>
+    <img src="https://gateway.ipfs.io/ipfs/QmeKzE7T12GmrR8TECXwKjvptL3AbWX71GeGdZJ85p9X1B/bot_normal.png" alt="Bot Normal">
+    <p>Contador: <span class="counter blue">0.00</span> ETH</p>
+    <button>Alquilar</button>
+</div>
+		<script>
+    // Actualiza el contador cada minuto
+    const counterEl = document.querySelector('.counter');
+    let counterValue = 0;
+    setInterval(() => {
+        counterValue += 0.0003; // Cambia este valor según lo que necesites
+        counterEl.textContent = counterValue.toFixed(2);
+    }, 60000);
+</script>
 		<div class="card">
-			<h3>Bot Normal</h3>
-			<p>Este bot simula un stake de Ethereum a una velocidad normal.</p>
-			<p>Inversión mínima: 0.05 ETH</p>
-			<p>Crecimiento en 60 minutos: 0.02 ETH</p>
-			<img src="bot_normal.png" alt="Bot Normal">
-			<button>Alquilar</button>
-		</div>
-		<div class="card">
-			<h3>Bot Avanzado</h3>
-			<p>Este bot simula un stake de Ethereum a una velocidad avanzada.</p>
-			<p>Inversión mínima: 0.05 ETH</p>
-			<p>Crecimiento en 60 minutos: <span class="speed blue large">0.00</span> ETH</p>
-			<img src="bot_avanzado.png" alt="Bot Avanzado">
+    <h3 class="shine">Bot Avanzado</h3>
+    <p>Este bot simula un stake de Ethereum a una velocidad avanzada.</p>
+    <p>Inversión mínima: 0.05 ETH</p>
+    <p>Crecimiento en 60 minutos: <span class="speed blue large">0.06</span> ETH</p>
+    <img src="https://gateway.ipfs.io/ipfs/QmZ
 			<button>Alquilar</button>
 		</div>
 		<div class="card">
