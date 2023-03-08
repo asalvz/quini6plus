@@ -1,183 +1,97 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
-<head>
-	<title>Contratar Bot de Trading - Fondo Futurista</title>
-	<style>
-		body {
-			background: linear-gradient(to right, #1d2671, #008cff, #00c6ff);
-			background-size: 200% 100%;
-			animation: gradient 10s ease infinite;
-		}
-
-		@keyframes gradient {
-			0% {
-				background-position: 0% 50%;
-			}
-			50% {
-				background-position: 100% 50%;
-			}
-			100% {
-				background-position: 0% 50%;
-			}
-		}
-
-		.container {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-around;
-			margin-top: 50px;
-		}
-
-		.card {
-			background-color: #fff;
-			border-radius: 10px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-			padding: 20px;
-			margin: 20px;
-			width: 300px;
-			text-align: center;
-		}
-
-		h2 {
-			color: #fff;
-			font-size: 36px;
-			margin-top: 50px;
-			text-align: center;
-		}
-
-		h3 {
-			color: #008cff;
-			font-size: 24px;
-			margin-bottom: 20px;
-			margin-top: 0;
-			text-align: center;
-			position: relative;
-		}
-
-		h3.shine:after {
-			content: "";
-			display: block;
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			background: linear-gradient(to right, #00c6ff, #008cff);
-			opacity: 0;
-			transition: opacity 0.5s ease-in-out;
-			animation: shine 1s ease-in-out infinite;
-			z-index: 1;
-		}
-
-		h3:hover:after {
-			opacity: 0.2;
-		}
-
-		@keyframes shine {
-			0% {
-				opacity: 0;
-			}
-			50% {
-				opacity: 1;
-			}
-			100% {
-				opacity: 0;
-			}
-		}
-
-		p {
-			color: #333;
-			font-size: 16px;
-			line-height: 1.5;
-			margin-bottom: 20px;
-			margin-top: 0;
-			text-align: justify;
-		}
-
-		.speed {
-			color: blue;
-			font-size: 48px;
-			font-weight: bold;
-			margin-bottom: 20px;
-			margin-top: 0;
-			text-align: center;
-		}
-
-		.blue {
-			color: blue;
-		}
-
-		.large {
-			font-size: 48px;
-			font-weight: bold;
-		}
-
-		button {
-			background-color: #008cff;
-			color: #fff;
-			padding: 10px 20px;
-			border-radius: 5px;
-			border: none;
-			font-size: 16px;
-			cursor: pointer;
-			transition: background-color 0.5s ease-in-out;
-			margin-top: 20px;
-		}
-
-		button:hover {
-			background-color: #00c6ff;
-		
-<button>Contratar Bot de Trading</button>
-</div>
-<div class="card">
-<h3 class="shine">Plan Premium</h3>
-<p>Este plan te ofrece todas las funcionalidades del plan básico, además de acceso a estrategias avanzadas y soporte personalizado las 24 horas del día.</p>
-<p class="speed">$<span class="blue">99</span>/mes</p>
-<button>Contratar Bot de Trading</button>
-</div>
-</div>
-
-</body>
-</html>
-<body>
-	<h2>Contratar Bot de Trading</h2>
-	<div class="container">
-<div class="card">
-    <h3 class="shine">Bot Normal</h3>
-    <p>Este bot simula un stake de Ethereum a una velocidad normal.</p>
-    <p>Inversión mínima: 0.05 ETH</p>
-    <p>Crecimiento en 60 minutos: 0.02 ETH</p>
-    <img src="https://gateway.ipfs.io/ipfs/QmeKzE7T12GmrR8TECXwKjvptL3AbWX71GeGdZJ85p9X1B/bot_normal.png" alt="Bot Normal">
-    <p>Contador: <span class="counter blue">0.00</span> ETH</p>
-    <button>Alquilar</button>
-</div>
-		<script>
-    // Actualiza el contador cada minuto
-    const counterEl = document.querySelector('.counter');
-    let counterValue = 0;
-    setInterval(() => {
-        counterValue += 0.0003; // Cambia este valor según lo que necesites
-        counterEl.textContent = counterValue.toFixed(2);
-    }, 60000);
-</script>
-		<div class="card">
-    <h3 class="shine">Bot Avanzado</h3>
-    <p>Este bot simula un stake de Ethereum a una velocidad avanzada.</p>
-    <p>Inversión mínima: 0.05 ETH</p>
-    <p>Crecimiento en 60 minutos: <span class="speed blue large">0.06</span> ETH</p>
-    <img src="https://gateway.ipfs.io/ipfs/QmZ
-			<button>Alquilar</button>
-		</div>
-		<div class="card">
-			<h3>Bot Premium</h3>
-			<p>Este bot simula un stake de Ethereum a una velocidad premium</p>
-<p>Inversión mínima: 0.1 ETH</p>
-<p>Crecimiento en 60 minutos: <span class="speed blue large">0.00</span> ETH</p>
-<img src="bot_premium.png" alt="Bot Premium">
-<button>Alquilar</button>
-</div>
-</div>
-
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Alquiler de Bots de Stake en Ethereum</title>
+    <style>
+      body {
+        background-color: #1A1D2B;
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+      }
+      h1 {
+        font-size: 36px;
+        text-align: center;
+      }
+      .card {
+        background-color: #2A2E3F;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        display: inline-block;
+        margin: 20px;
+        padding: 20px;
+        text-align: center;
+        width: 250px;
+      }
+      .card h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      .card p {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+      .card button {
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 20px;
+        padding: 10px;
+        width: 100%;
+      }
+      .normal {
+        animation: increment-normal 10s linear infinite;
+      }
+      .fast {
+        animation: increment-fast 5s linear infinite;
+      }
+      .super-fast {
+        animation: increment-super-fast 2s linear infinite;
+      }
+      @keyframes increment-normal {
+        0% {
+          content: "Eth 0.0001";
+        }
+        100% {
+          content: "Eth 0.0100";
+        }
+      }
+      @keyframes increment-fast {
+        0% {
+          content: "Eth 0.0001";
+        }
+        100% {
+          content: "Eth 0.0100";
+        }
+      }
+      @keyframes increment-super-fast {
+        0% {
+          content: "Eth 0.0001";
+        }
+        100% {
+          content: "Eth 0.0100";
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Alquiler de Bots de Stake en Ethereum</h1>
+    <div class="card normal">
+      <h2>Bot 1 - Normal</h2>
+      <p class="increment">Eth 0.0001</p>
+      <button>Alquilar Bot</button>
+    </div>
+    <div class="card fast">
+      <h2>Bot 2 - Fast</h2>
+      <p class="increment">Eth 0.0001</p>
+      <button>Alquilar Bot</button>
+    </div>
+    <div class="card super-fast">
+      <h2>Bot 3 - Super Fast</h2>
+      <p class="increment">Eth 0.0001</p>
+      <button>Alquilar Bot</button>
+    </div>
+  </body>
 </html>
