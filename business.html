@@ -1,84 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>Background con estrellas y cometa</title>
-	<style>
-		body {
-			background-color: #000;
-			overflow: hidden;
-		}
-		.star {
-			position: absolute;
-			background-color: #fff;
-			border-radius: 50%;
-			opacity: 0;
-			animation-name: twinkling;
-			animation-duration: 1s;
-			animation-timing-function: ease-in-out;
-			animation-iteration-count: infinite;
-		}
-		.comet {
-			position: absolute;
-			width: 100px;
-			height: 20px;
-			background-color: #fff;
-			transform: rotate(-45deg);
-			animation-name: comet;
-			animation-duration: 4s;
-			animation-timing-function: linear;
-			animation-iteration-count: infinite;
-			animation-delay: 1s;
-		}
-		@keyframes twinkling {
-			0% {
-				opacity: 0;
-			}
-			50% {
-				opacity: 1;
-			}
-			100% {
-				opacity: 0;
-			}
-		}
-		@keyframes comet {
-			0% {
-				left: -100px;
-				top: 100px;
-			}
-			100% {
-				left: 100vw;
-				top: -20px;
-			}
-		}
-	</style>
-</head>
-<body>
-	<!-- estrellas -->
-	<div class="star" style="left: 10%; top: 15%; width: 2px; height: 2px;"></div>
-	<div class="star" style="left: 90%; top: 10%; width: 3px; height: 3px;"></div>
-	<div class="star" style="left: 30%; top: 25%; width: 4px; height: 4px;"></div>
-	<div class="star" style="left: 60%; top: 30%; width: 2px; height: 2px;"></div>
-	<div class="star" style="left: 20%; top: 45%; width: 3px; height: 3px;"></div>
-	<div class="star" style="left: 80%; top: 55%; width: 4px; height: 4px;"></div>
-	<div class="star" style="left: 50%; top: 70%; width: 2px; height: 2px;"></div>
-	<div class="star" style="left: 15%; top: 85%; width: 3px; height: 3px;"></div>
-	<div class="star" style="left: 70%; top: 90%; width: 4px; height: 4px;"></div>
-	
-	<!-- cometa -->
-	<div class="comet"></div>
-
-	<script>
-		// crear estrellas aleatorias
-		for (var i = 0; i < 50; i++) {
-			var star = document.createElement("div");
-			star.className = "star";
-			star.style.left = Math.random() * 100 + "%";
-			star.style.top = Math.random() * 100 + "%";
-			star.style.width = Math.random() * 4 + 1 + "px";
-			star.style.height = star.style.width;
-			document.body.appendChild(star);
-		}
-	</script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Contrata tu Bot de Trading</title>
+    <style>
+      body {
+        background-color: #1c1c1c; /* Color de fondo oscuro */
+        background-image: linear-gradient(to right, #384aeb, #9b59b6); /* Gradiente de color */
+        animation: background 10s ease infinite alternate; /* Animación de fondo */
+      }
+      h1 {
+        font-family: Arial, sans-serif; /* Fuente del título */
+        font-size: 4rem; /* Tamaño del título */
+        color: #fff; /* Color del título */
+        text-align: center; /* Alineación del título */
+        margin-top: 20%; /* Espacio superior del título */
+        text-shadow: 2px 2px 4px #000; /* Sombra del título */
+      }
+      /* Animación de fondo */
+      @keyframes background {
+        0% { background-position: 0 0; }
+        100% { background-position: 100% 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contrata tu Bot de Trading</h1>
+  </body>
 </html>
