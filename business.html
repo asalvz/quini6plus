@@ -90,7 +90,15 @@
     }
 </style>
 
-<p style="color: #2c3e50; font-size: 18px; font-weight: bold; text-align: center; font-family: 'Lucida Console', Monaco, monospace;">ENTER THE AMOUNT OF ETH YOU WANT TO MINE:</p>
+<p style="color: white; font-size: 18px; font-weight: bold; text-align: center; border-bottom: 1px solid white; animation: blink-caret 0.75s step-end infinite;">Enter the amount of ETH you want to Mine<span style="color: #2c3e50;">_</span></p>
+
+<style>
+    /* Animación del cursor */
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: white; }
+    }
+</style>
 
         <input type="number" id="amount1">
         <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount1').value)">Rent AI</button>
@@ -121,7 +129,15 @@
         }
     }
 </style>
-<p style="color: #2c3e50; font-size: 18px; font-weight: bold; text-align: center; font-family: 'Lucida Console', Monaco, monospace;">ENTER THE AMOUNT OF ETH YOU WANT TO MINE:</p>
+<p style="color: white; font-size: 18px; font-weight: bold; text-align: center; border-bottom: 1px solid white; animation: blink-caret 0.75s step-end infinite;">Enter the amount of ETH you want to Mine<span style="color: #2c3e50;">_</span></p>
+
+<style>
+    /* Animación del cursor */
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: white; }
+    }
+</style>
 
         <input type="number" id="amount2">
         <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount2').value)">Rent AI</button>
