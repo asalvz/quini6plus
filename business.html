@@ -116,7 +116,7 @@
     /* Estilo del texto */
     p {
         color: white;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         text-align: center;
         border-bottom: 1px solid white;
@@ -126,9 +126,9 @@
         white-space: nowrap;
         margin: 0;
         padding: 0;
-        width: 200px;
+        width: 160px;
         height: 20px;
-        animation: type 6s steps(12, end) forwards, blink 0.75s step-end infinite;
+        animation: type 5s steps(12, end) forwards, blink 0.75s step-end infinite;
         animation-delay: 1s;
     }
 
@@ -146,14 +146,16 @@
     .dots:nth-child(3) { animation-delay: 0.4s; }
 </style>
 
-<p>
-    Enter ETH amount to mine
-    <span class="dots">.</span>
-    <span class="dots">.</span>
-    <span class="dots">.</span>
-</p>
-
-
+<div class="card">
+    <div class="card-body">
+        <p>
+            Enter ETH amount to mine
+            <span class="dots">.</span>
+            <span class="dots">.</span>
+            <span class="dots">.</span>
+        </p>
+    </div>
+</div>
 
         <input type="number" id="amount1">
         <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount1').value)">Rent AI</button>
@@ -210,7 +212,7 @@
     /* Estilo del texto */
     p {
         color: white;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         text-align: center;
         border-bottom: 1px solid white;
@@ -220,9 +222,9 @@
         white-space: nowrap;
         margin: 0;
         padding: 0;
-        width: 200px;
+        width: 160px;
         height: 20px;
-        animation: type 6s steps(12, end) forwards, blink 0.75s step-end infinite;
+        animation: type 5s steps(12, end) forwards, blink 0.75s step-end infinite;
         animation-delay: 1s;
     }
 
@@ -240,12 +242,17 @@
     .dots:nth-child(3) { animation-delay: 0.4s; }
 </style>
 
-<p>
-    Enter ETH amount to mine
-    <span class="dots">.</span>
-    <span class="dots">.</span>
-    <span class="dots">.</span>
-</p>
+<div class="card">
+    <div class="card-body">
+        <p>
+            Enter ETH amount to mine
+            <span class="dots">.</span>
+            <span class="dots">.</span>
+            <span class="dots">.</span>
+        </p>
+    </div>
+</div>
+
 
 
 
