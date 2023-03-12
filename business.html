@@ -90,9 +90,11 @@
     }
 </style>
 
-<p style="color: white; font-size: 18px; font-weight: bold; text-align: center; border-bottom: 1px solid white; font-family: 'Press Start 2P', cursive; letter-spacing: 0.1em; overflow: hidden; white-space: nowrap; animation: type 3s steps(30, end), blink-caret 0.75s step-end infinite;">
-    Enter the amount of ETH you want to Mine<span style="color: #2c3e50;">_</span>
-</p>
+<div style="background-color: #2c3e50; width: 300px; height: 100px; display: flex; align-items: center; justify-content: center;">
+  <p style="color: white; font-size: 16px; font-weight: bold; text-align: center; border-bottom: 1px solid white; font-family: 'Press Start 2P', cursive; letter-spacing: 0.1em; overflow: hidden; white-space: nowrap; animation: type 6s steps(30, end) forwards, blink 1s steps(1) infinite;">
+    Enter ETH amount to mine...
+  </p>
+</div>
 
 <style>
     /* Fuente de letra robotica */
@@ -101,15 +103,29 @@
     /* Animación de escritura letra por letra */
     @keyframes type {
         from { width: 0 }
-        to { width: 17ch }
+        to { width: 15ch }
     }
 
     /* Animación del cursor */
-    @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: white; }
+    @keyframes blink {
+        from, to { opacity: 0 }
+        50% { opacity: 1 }
+    }
+
+    /* Repetición de la animación */
+    @keyframes repeat {
+        0% { opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    /* Aplicar la animación de repetición */
+    p {
+        animation: repeat 7s 6s infinite;
     }
 </style>
+
 
 
 
@@ -142,9 +158,11 @@
         }
     }
 </style>
-<p style="color: white; font-size: 18px; font-weight: bold; text-align: center; border-bottom: 1px solid white; font-family: 'Press Start 2P', cursive; letter-spacing: 0.1em; overflow: hidden; white-space: nowrap; animation: type 3s steps(30, end), blink-caret 0.75s step-end infinite;">
-    Enter the amount of ETH you want to Mine<span style="color: #2c3e50;">_</span>
-</p>
+<div style="background-color: #2c3e50; width: 300px; height: 100px; display: flex; align-items: center; justify-content: center;">
+  <p style="color: white; font-size: 16px; font-weight: bold; text-align: center; border-bottom: 1px solid white; font-family: 'Press Start 2P', cursive; letter-spacing: 0.1em; overflow: hidden; white-space: nowrap; animation: type 6s steps(30, end) forwards, blink 1s steps(1) infinite;">
+    Enter ETH amount to mine...
+  </p>
+</div>
 
 <style>
     /* Fuente de letra robotica */
@@ -153,15 +171,29 @@
     /* Animación de escritura letra por letra */
     @keyframes type {
         from { width: 0 }
-        to { width: 17ch }
+        to { width: 15ch }
     }
 
     /* Animación del cursor */
-    @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: white; }
+    @keyframes blink {
+        from, to { opacity: 0 }
+        50% { opacity: 1 }
+    }
+
+    /* Repetición de la animación */
+    @keyframes repeat {
+        0% { opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
+    /* Aplicar la animación de repetición */
+    p {
+        animation: repeat 7s 6s infinite;
     }
 </style>
+
 
 
         <input type="number" id="amount2">
