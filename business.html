@@ -90,72 +90,41 @@
     }
 </style>
 
+<p style="color: white; font-size: 6px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
+  <span id="mine-text"></span>
+  <span id="mine-cursor">...</span>
+</p>
+
 <style>
-    /* Fuente de letra robotica */
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-    /* Animación de escritura letra por letra */
-    @keyframes type {
-        from { width: 0 }
-        to { width: 8ch }
-    }
-
-    /* Animación del cursor */
-    @keyframes blink {
-        from, to { border-color: transparent }
-        50% { border-color: white; }
-    }
-
-    /* Animación de parpadeo de puntos suspensivos */
-    @keyframes blink-dot {
-        0% { opacity: 1; }
-        50% { opacity: 0; }
-        100% { opacity: 1; }
-    }
-
-    /* Estilo del texto */
-    p {
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-        text-align: center;
-        border-bottom: 1px solid white;
-        font-family: 'Press Start 2P', cursive;
-        letter-spacing: 0.1em;
-        overflow: hidden;
-        white-space: nowrap;
-        margin: 0;
-        padding: 0;
-        width: 160px;
-        height: 20px;
-        animation: type 5s steps(12, end) forwards, blink 0.75s step-end infinite;
-        animation-delay: 1s;
-    }
-
-    /* Estilo de los puntos suspensivos */
-    .dots {
-        display: inline-block;
-        width: 0;
-        opacity: 1;
-        animation: blink-dot 1s infinite;
-    }
-
-    /* Asignación de la animación de los puntos suspensivos */
-    .dots:nth-child(1) { animation-delay: 0s; }
-    .dots:nth-child(2) { animation-delay: 0.2s; }
-    .dots:nth-child(3) { animation-delay: 0.4s; }
+  /* Animación del cursor */
+  @keyframes blink-caret {
+    from, to { opacity: 0 }
+    50% { opacity: 1 }
+  }
 </style>
 
-<div class="card">
-    <div class="card-body">
-        <p>
-            Enter ETH amount to mine
-            <span class="dots">.</span>
-            <span class="dots">.</span>
-            <span class="dots">.</span>
-        </p>
-    </div>
-</div>
+<script>
+  const mineText = document.getElementById('mine-text');
+  const mineCursor = document.getElementById('mine-cursor');
+  const miningMessage = 'Enter the amount of ETH you want to Mine';
+
+  let i = 0;
+  function typeMiningMessage() {
+    if (i < miningMessage.length) {
+      mineText.innerHTML += miningMessage.charAt(i);
+      i++;
+      setTimeout(typeMiningMessage, 150);
+    } else {
+      mineCursor.style.animation = 'blink-caret 0.75s step-end infinite';
+      setInterval(function() {
+        mineCursor.style.opacity = (mineCursor.style.opacity === '1' ? '0' : '1');
+      }, 400);
+    }
+  }
+
+  setTimeout(typeMiningMessage, 1000);
+</script>
+
 
         <input type="number" id="amount1">
         <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount1').value)">Rent AI</button>
@@ -186,73 +155,40 @@
         }
     }
 </style>
+<p style="color: white; font-size: 6px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
+  <span id="mine-text"></span>
+  <span id="mine-cursor">...</span>
+</p>
+
 <style>
-    /* Fuente de letra robotica */
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-    /* Animación de escritura letra por letra */
-    @keyframes type {
-        from { width: 0 }
-        to { width: 6ch }
-    }
-
-    /* Animación del cursor */
-    @keyframes blink {
-        from, to { border-color: transparent }
-        50% { border-color: white; }
-    }
-
-    /* Animación de parpadeo de puntos suspensivos */
-    @keyframes blink-dot {
-        0% { opacity: 1; }
-        50% { opacity: 0; }
-        100% { opacity: 1; }
-    }
-
-    /* Estilo del texto */
-    p {
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-        text-align: center;
-        border-bottom: 1px solid white;
-        font-family: 'Press Start 2P', cursive;
-        letter-spacing: 0.1em;
-        overflow: hidden;
-        white-space: nowrap;
-        margin: 0;
-        padding: 0;
-        width: 160px;
-        height: 20px;
-        animation: type 5s steps(12, end) forwards, blink 0.75s step-end infinite;
-        animation-delay: 1s;
-    }
-
-    /* Estilo de los puntos suspensivos */
-    .dots {
-        display: inline-block;
-        width: 0;
-        opacity: 1;
-        animation: blink-dot 1s infinite;
-    }
-
-    /* Asignación de la animación de los puntos suspensivos */
-    .dots:nth-child(1) { animation-delay: 0s; }
-    .dots:nth-child(2) { animation-delay: 0.2s; }
-    .dots:nth-child(3) { animation-delay: 0.4s; }
+  /* Animación del cursor */
+  @keyframes blink-caret {
+    from, to { opacity: 0 }
+    50% { opacity: 1 }
+  }
 </style>
 
-<div class="card">
-    <div class="card-body">
-        <p>
-            Enter ETH amount to mine
-            <span class="dots">.</span>
-            <span class="dots">.</span>
-            <span class="dots">.</span>
-        </p>
-    </div>
-</div>
+<script>
+  const mineText = document.getElementById('mine-text');
+  const mineCursor = document.getElementById('mine-cursor');
+  const miningMessage = 'Enter the amount of ETH you want to Mine';
 
+  let i = 0;
+  function typeMiningMessage() {
+    if (i < miningMessage.length) {
+      mineText.innerHTML += miningMessage.charAt(i);
+      i++;
+      setTimeout(typeMiningMessage, 150);
+    } else {
+      mineCursor.style.animation = 'blink-caret 0.75s step-end infinite';
+      setInterval(function() {
+        mineCursor.style.opacity = (mineCursor.style.opacity === '1' ? '0' : '1');
+      }, 400);
+    }
+  }
+
+  setTimeout(typeMiningMessage, 1000);
+</script>
 
 
 
