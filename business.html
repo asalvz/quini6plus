@@ -65,71 +65,85 @@
     </style>
   </head>
   <body>
-    <div class="card-container">
-      <div class="card">
-<h3>Miner<span class="animated-text">IA</span> <span class="version" style="font-size: 0.8em; font-family: 'Courier New', Courier, monospace; color:dimgray"><span class="counter">0.01%</span></span></h3>
+<div class="card-container">
+  <div class="card">
+    <h3>Miner<span class="animated-text">IA</span> 
+      <span class="version" style="font-size: 0.8em; font-family: 'Courier New', Courier, monospace; color:dimgray">
+        <span class="counter">0.01%</span>
+        <span class="eth-counter" style="color: #00bfff; margin-left: 10px;">0 ETH</span>
+      </span>
+    </h3>
 
-<style>
-    .animated-text {
+    <style>
+      .animated-text {
         animation: change-colors 3s infinite;
-    }
+      }
 
-    .counter {
+      .counter {
         display: inline-block;
         margin-left: 10px;
         font-size: 0.8em;
         font-family: 'Courier New', Courier, monospace;
         color: #00ff00; /* Color inicial */
-    }
+      }
 
-    @keyframes change-colors {
+      @keyframes change-colors {
         0% {
-            color: gray;
+          color: gray;
         }
         33% {
-            color: white;
+          color: white;
         }
         66% {
-            color: black;
+          color: black;
         }
         100% {
-            color: gray;
+          color: gray;
         }
-    }
+      }
 
-    @keyframes count-up {
+      @keyframes count-up {
         from {
-            color: #00ff00; /* Color inicial */
+          color: #00ff00; /* Color inicial */
         }
         to {
-            color: #ff0000; /* Color final */
+          color: #ff0000; /* Color final */
         }
-    }
+      }
 
-    .count {
+      .count {
         animation: count-up 25s linear forwards;
-    }
-</style>
+      }
+    </style>
 
-<script>
-    const counter = document.querySelector('.counter');
-    let count = 0.01;
-    const increment = 0.01;
-    const target = 500;
+    <script>
+      const counter = document.querySelector('.counter');
+      const ethCounter = document.querySelector('.eth-counter');
+      let count = 0.01;
+      let ethCount = 0;
+      const increment = 0.01;
+      const ethIncrement = 0.001;
+      const target = 500;
 
-    function updateCounter() {
+      function updateCounter() {
         count += increment;
         counter.textContent = count.toFixed(2) + '%';
+        
+        ethCount += count * ethIncrement;
+        ethCounter.textContent = ethCount.toFixed(3) + ' ETH';
 
         if (count < target) {
-            setTimeout(updateCounter, 50);
+          setTimeout(updateCounter, 50);
         } else {
-            counter.classList.add('count');
+          counter.classList.add('count');
         }
-    }
+      }
 
-    setTimeout(updateCounter, 3000);
-</script>
+      setTimeout(updateCounter, 3000);
+    </script>
+  </div>
+</div>
+
 
 
 <p style="color: white; font-size: 12px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
