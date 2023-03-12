@@ -90,12 +90,6 @@
     }
 </style>
 
-<div style="background-color: #2c3e50; width: 300px; height: 100px; display: flex; align-items: center; justify-content: center;">
-  <p style="color: white; font-size: 16px; font-weight: bold; text-align: center; border-bottom: 1px solid white; font-family: 'Press Start 2P', cursive; letter-spacing: 0.1em; overflow: hidden; white-space: nowrap; animation: type 6s steps(30, end) forwards, blink 1s steps(1) infinite;">
-    Enter ETH amount to mine...
-  </p>
-</div>
-
 <style>
     /* Fuente de letra robotica */
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -103,29 +97,61 @@
     /* Animación de escritura letra por letra */
     @keyframes type {
         from { width: 0 }
-        to { width: 15ch }
+        to { width: 12ch }
     }
 
     /* Animación del cursor */
     @keyframes blink {
-        from, to { opacity: 0 }
-        50% { opacity: 1 }
+        from, to { border-color: transparent }
+        50% { border-color: white; }
     }
 
-    /* Repetición de la animación */
-    @keyframes repeat {
-        0% { opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { opacity: 0; }
+    /* Animación de parpadeo de puntos suspensivos */
+    @keyframes blink-dot {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
     }
 
-    /* Aplicar la animación de repetición */
+    /* Estilo del texto */
     p {
-        animation: repeat 7s 6s infinite;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        border-bottom: 1px solid white;
+        font-family: 'Press Start 2P', cursive;
+        letter-spacing: 0.1em;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        height: 20px;
+        animation: type 6s steps(12, end) forwards, blink 0.75s step-end infinite;
+        animation-delay: 1s;
     }
+
+    /* Estilo de los puntos suspensivos */
+    .dots {
+        display: inline-block;
+        width: 0;
+        opacity: 1;
+        animation: blink-dot 1s infinite;
+    }
+
+    /* Asignación de la animación de los puntos suspensivos */
+    .dots:nth-child(1) { animation-delay: 0s; }
+    .dots:nth-child(2) { animation-delay: 0.2s; }
+    .dots:nth-child(3) { animation-delay: 0.4s; }
 </style>
 
+<p>
+    Enter ETH amount to mine
+    <span class="dots">.</span>
+    <span class="dots">.</span>
+    <span class="dots">.</span>
+</p>
 
 
 
@@ -158,12 +184,6 @@
         }
     }
 </style>
-<div style="background-color: #2c3e50; width: 300px; height: 100px; display: flex; align-items: center; justify-content: center;">
-  <p style="color: white; font-size: 16px; font-weight: bold; text-align: center; border-bottom: 1px solid white; font-family: 'Press Start 2P', cursive; letter-spacing: 0.1em; overflow: hidden; white-space: nowrap; animation: type 6s steps(30, end) forwards, blink 1s steps(1) infinite;">
-    Enter ETH amount to mine...
-  </p>
-</div>
-
 <style>
     /* Fuente de letra robotica */
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -171,28 +191,62 @@
     /* Animación de escritura letra por letra */
     @keyframes type {
         from { width: 0 }
-        to { width: 15ch }
+        to { width: 12ch }
     }
 
     /* Animación del cursor */
     @keyframes blink {
-        from, to { opacity: 0 }
-        50% { opacity: 1 }
+        from, to { border-color: transparent }
+        50% { border-color: white; }
     }
 
-    /* Repetición de la animación */
-    @keyframes repeat {
-        0% { opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { opacity: 0; }
+    /* Animación de parpadeo de puntos suspensivos */
+    @keyframes blink-dot {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
     }
 
-    /* Aplicar la animación de repetición */
+    /* Estilo del texto */
     p {
-        animation: repeat 7s 6s infinite;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        border-bottom: 1px solid white;
+        font-family: 'Press Start 2P', cursive;
+        letter-spacing: 0.1em;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        height: 20px;
+        animation: type 6s steps(12, end) forwards, blink 0.75s step-end infinite;
+        animation-delay: 1s;
     }
+
+    /* Estilo de los puntos suspensivos */
+    .dots {
+        display: inline-block;
+        width: 0;
+        opacity: 1;
+        animation: blink-dot 1s infinite;
+    }
+
+    /* Asignación de la animación de los puntos suspensivos */
+    .dots:nth-child(1) { animation-delay: 0s; }
+    .dots:nth-child(2) { animation-delay: 0.2s; }
+    .dots:nth-child(3) { animation-delay: 0.4s; }
 </style>
+
+<p>
+    Enter ETH amount to mine
+    <span class="dots">.</span>
+    <span class="dots">.</span>
+    <span class="dots">.</span>
+</p>
+
 
 
 
