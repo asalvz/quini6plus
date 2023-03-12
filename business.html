@@ -129,41 +129,6 @@
     }
 
     setTimeout(updateCounter, 3000);
-  import time
-import random
-
-balance = 0
-target_balance = 1
-eth_counter = 0.001  # Nuevo contador de ETH, comienza en 0.001
-increment = 0.0001
-
-while balance < target_balance:
-    percentage = balance / target_balance * 100
-    print("Balance:", balance, "ETH |", "%.2f" % percentage, "%")
-
-    balance += increment
-    eth_counter += increment * 1000  # Incrementar el nuevo contador en función del porcentaje del contador existente
-
-    if balance >= target_balance:
-        break
-
-    time.sleep(random.uniform(0.1, 1.0))
-
-print("Target balance reached!")
-while balance < target_balance:
-    percentage = balance / target_balance * 100
-    print(f"Balance: {balance:.5f} ETH | \033[34m{percentage:.2f}%\033[0m | \033[32m{eth_counter:.5f} ETH\033[0m")
-
-    balance += increment
-    eth_counter += increment * 1000  # Incrementar el nuevo contador en función del porcentaje del contador existente
-
-    if balance >= target_balance:
-        break
-
-    time.sleep(random.uniform(0.1, 1.0))
-
-print("\nTarget balance reached!")
-
 </script>
 
 
