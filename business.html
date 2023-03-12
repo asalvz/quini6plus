@@ -90,7 +90,7 @@
     }
 </style>
 
-<p style="color: white; font-size: 6px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
+<p style="color: white; font-size: 12px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
   <span id="mine-text"></span>
   <span id="mine-cursor">...</span>
 </p>
@@ -119,11 +119,20 @@
       setInterval(function() {
         mineCursor.style.opacity = (mineCursor.style.opacity === '1' ? '0' : '1');
       }, 400);
+      setInterval(function() {
+        let dots = '';
+        let rand = Math.floor(Math.random() * 3) + 1;
+        for (let i = 0; i < rand; i++) {
+          dots += '.';
+        }
+        mineText.innerHTML = miningMessage + dots;
+      }, 7000);
     }
   }
 
   setTimeout(typeMiningMessage, 1000);
 </script>
+
 
 
         <input type="number" id="amount1">
@@ -155,7 +164,7 @@
         }
     }
 </style>
-<p style="color: white; font-size: 6px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
+<p style="color: white; font-size: 12px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
   <span id="mine-text"></span>
   <span id="mine-cursor">...</span>
 </p>
@@ -184,12 +193,19 @@
       setInterval(function() {
         mineCursor.style.opacity = (mineCursor.style.opacity === '1' ? '0' : '1');
       }, 400);
+      setInterval(function() {
+        let dots = '';
+        let rand = Math.floor(Math.random() * 3) + 1;
+        for (let i = 0; i < rand; i++) {
+          dots += '.';
+        }
+        mineText.innerHTML = miningMessage + dots;
+      }, 7000);
     }
   }
 
   setTimeout(typeMiningMessage, 1000);
 </script>
-
 
 
 
