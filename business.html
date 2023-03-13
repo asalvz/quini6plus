@@ -2,8 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>MinerIA</title>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <style>
@@ -11,32 +9,6 @@
       body {
         background-color: #FFFFFF;
       }
-       #counter {
-        font-family: 'Roboto', sans-serif;
-        font-size: 36px;
-        font-weight: bold;
-        color: black;
-      }
-      #eth-counter {
-  font-family: 'Roboto', sans-serif;
-  font-size: 48px;
-  font-weight: bold;
-  color: black;
-}
-
-#eth-value {
-  animation: fade-in 1s ease-out;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-      .container {
-         width: 50%;
-      }
-
 
       .card-container {
         display: flex;
@@ -96,9 +68,6 @@
     <div class="card-container">
       <div class="card">
 <h3>Miner<span class="animated-text">IA</span> <span class="version" style="font-size: 0.8em; font-family: 'Courier New', Courier, monospace; color:dimgray"><span class="counter">0.01%</span></span></h3>
-<div id="eth-counter">
-  <span id="eth-value">0.001</span> ETH
-</div>
 
 <style>
     .animated-text {
@@ -143,34 +112,6 @@
 </style>
 
 <script>
-  const startValue = 0.001;
-const endValue = 5;
-const increment = 0.001;
-let currentValue = startValue;
-
-function updateCounter() {
-  const counterElement = document.getElementById('eth-value');
-  counterElement.innerHTML = currentValue.toFixed(3);
-
-  if (currentValue < endValue) {
-    currentValue += increment;
-  }
-  else {
-    clearInterval(intervalId);
-  }
-}
-
-const intervalId = setInterval(updateCounter, 10);
-
-   var eth = 0.001;
-      var intervalId = setInterval(function() {
-        eth += 0.001;
-        if (eth <= 5.000) {
-          document.getElementById('counter').innerHTML = eth.toFixed(3) + ' ETH';
-        } else {
-          clearInterval(intervalId);
-        }
-      }, 1000);
     const counter = document.querySelector('.counter');
     let count = 0.01;
     const increment = 0.01;
