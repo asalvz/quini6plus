@@ -1,108 +1,122 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cotizador de dólar blue y oro</title>
-  <!-- Incluimos los estilos de Bootstrap -->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cotizador</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <style>
-    .card {
-      border-radius: 10px;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-      padding: 30px;
-    }
-    .form-control {
-      border-radius: 5px;
-    }
-    .btn-primary {
-      background-color: #ffbc6a;
-      border-color: #ffbc6a;
-    }
-    .btn-primary:hover {
-      background-color: #ffae00;
-      border-color: #ffae00;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
-    <div class="card mt-5">
-      <div class="card-header">
-        <h2 class="text-center mb-4">Cotizador de dólar blue y oro</h2>
-        <div class="row justify-content-center">
-          <div class="col-md-4">
-            <button type="button" class="btn btn-primary btn-block" onclick="obtenerCotizacion('dolar')">Obtener cotización de dólar blue</button>
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <div class="card text-center">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Cotizador de divisas</h5>
           </div>
-          <div class="col-md-4">
-            <button type="button" class="btn btn-primary btn-block" onclick="obtenerCotizacion('oro')">Obtener cotización de oro</button>
+          <div class="card-body">
+            <p class="card-text">Introduce la cotización del dólar blue o del oro:</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cotizacion-modal">Consultar cotización</button>
+            <p class="card-text mt-4">Introduce los montos a convertir:</p>
+            <form>
+              <div class="form-group">
+                <label for="monto-dolar" class="sr-only">Monto en dólares</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                  </div>
+                  <input type="number" class="form-control" id="monto-dolar" placeholder="Monto en dólares">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="monto-oro" class="sr-only">Monto en gramos de oro</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">g</div>
+                  </div>
+                  <input type="number" class="form-control" id="monto-oro" placeholder="Monto en gramos de oro">
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary btn-block mt-4" onclick="calcular()">Calcular</button>
+            </form>
+            <p id="resultado" class="card-text mt-4"></p>
           </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <form>
-          <div class="form-group">
-            <label for="dolar">Cotización de dólar blue:</label>
-            <input type="number" id="dolar" name="dolar" class="form-control">
+          <div class="card-footer">
+            <a href="#" class="btn btn-secondary btn-block" target="_blank">Reservar cita</a>
           </div>
-          <div class="form-group">
-            <label for="oro">Cotización de oro:</label>
-            <input type="number" id="oro" name="oro" class="form-control">
-          </div>
-          <button type="button" class="btn btn-primary" onclick="calcular()">Calcular</button>
-        </form>
-        <div class="mt-4">
-          <p id="resultado"></p>
-        </div>
-        <div class="mt-4">
-          <h4>Reservar una cita</h4>
-          <form>
-            <div class="form-group">
-              <label for="nombre">Nombre:</label>
-              <input type="text" id="nombre" name="nombre" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-          </form>
         </div>
       </div>
     </div>
   </div>
 
- 
- <script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script>
-    // Función para obtener la cotización del dólar blue o del oro
-    function obtenerCotizacion(moneda) {
-      let cotizacion;
-      if (moneda === 'dolar') {
-        cotizacion = prompt('Introduce la cotización del dólar blue:');
-        document.getElementById('dolar').value = cotizacion;
-      } else if (moneda === 'oro') {
-        cotizacion = prompt('Introduce la cotización del oro:');
-        document.getElementById('oro').value = cotizacion;
-      }
-    }
+  <!-- Modal para introducir la cotización -->
+  <div class="modal fade" id="cotizacion-modal" tabindex="-1" role="dialog" aria-labelledby="cotizacion-modal-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cotizacion-modal-label">Introduce la cotización</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="cotizacion-dolar" class="sr-only">Cotización del dólar blue</label>
+<div class="input-group">
+<div class="input-group-prepend">
+<div class="input-group-text">$</div>
+</div>
+<input type="number" class="form-control" id="cotizacion-dolar" placeholder="Cotización del dólar blue">
+</div>
+</div>
+<div class="form-group">
+<label for="cotizacion-oro" class="sr-only">Cotización del oro</label>
+<div class="input-group">
+<div class="input-group-prepend">
+<div class="input-group-text">USD/g</div>
+</div>
+<input type="number" class="form-control" id="cotizacion-oro" placeholder="Cotización del oro">
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+<button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+</div>
+</div>
+</div>
 
-    // Función para calcular la conversión de dólar blue y oro a pesos argentinos
+  </div>
+  <script>
+    let cotizacionDolar = 0;
+    let cotizacionOro = 0;
+
     function calcular() {
-      const cotizacionDolar = document.getElementById('dolar').value;
-      const cotizacionOro = document.getElementById('oro').value;
-      const montoDolar = prompt('Introduce el monto en dólares a convertir:');
-      const montoOro = prompt('Introduce el monto en gramos de oro a convertir:');
+      const montoDolar = document.getElementById("monto-dolar").value;
+      const montoOro = document.getElementById("monto-oro").value;
+
       const resultadoDolar = montoDolar * cotizacionDolar;
       const resultadoOro = montoOro * cotizacionOro;
+
       const resultadoFinal = resultadoDolar + resultadoOro;
-      const resultadoElemento = document.getElementById('resultado');
-      resultadoElemento.innerHTML = `El resultado de la conversión es: ${resultadoFinal.toFixed(2)} pesos argentinos.`;
+
+      const resultado = document.getElementById("resultado");
+      resultado.textContent = `El resultado es: $${resultadoFinal.toFixed(2)}`;
     }
+
+    document.getElementById("cotizacion-modal").addEventListener("shown.bs.modal", function () {
+      document.getElementById("cotizacion-dolar").value = cotizacionDolar;
+      document.getElementById("cotizacion-oro").value = cotizacionOro;
+    });
+
+    document.getElementById("cotizacion-modal").addEventListener("hide.bs.modal", function () {
+      cotizacionDolar = document.getElementById("cotizacion-dolar").value;
+      cotizacionOro = document.getElementById("cotizacion-oro").value;
+    });
   </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
