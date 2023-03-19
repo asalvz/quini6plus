@@ -7,21 +7,47 @@
   <title>Cotizador de dólar blue y oro</title>
   <!-- Incluimos los estilos de Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    .card {
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+    .form-control {
+      border-radius: 5px;
+    }
+    .btn-primary {
+      background-color: #ffbc6a;
+      border-color: #ffbc6a;
+    }
+    .btn-primary:hover {
+      background-color: #ffae00;
+      border-color: #ffae00;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <div class="card mt-5">
       <div class="card-header">
-        <h2>Cotizador de dólar blue y oro</h2>
+        <h2 class="text-center mb-4">Cotizador de dólar blue y oro</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-primary btn-block" onclick="obtenerCotizacion('dolar')">Obtener cotización de dólar blue</button>
+          </div>
+          <div class="col-md-4">
+            <button type="button" class="btn btn-primary btn-block" onclick="obtenerCotizacion('oro')">Obtener cotización de oro</button>
+          </div>
+        </div>
       </div>
       <div class="card-body">
         <form>
           <div class="form-group">
-            <label for="dolar">Dólar blue:</label>
+            <label for="dolar">Cotización de dólar blue:</label>
             <input type="number" id="dolar" name="dolar" class="form-control">
           </div>
           <div class="form-group">
-            <label for="oro">Oro:</label>
+            <label for="oro">Cotización de oro:</label>
             <input type="number" id="oro" name="oro" class="form-control">
           </div>
           <button type="button" class="btn btn-primary" onclick="calcular()">Calcular</button>
@@ -47,29 +73,35 @@
     </div>
   </div>
 
-  <!-- Incluimos los scripts de Bootstrap y jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+ 
+ <script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
   <script>
-    function obtenerCotizacion() {
-      fetch('https://www.dolarblue.net/api.php')
-        .then(response => response.json())
-        .then(data => {
-          const cotizacion = data.oficial.value_sell;
-          document.getElementById('dolar').value = cotizacion;
-        })
-        .catch(error => console.error(error));
+    // Función para obtener la cotización del dólar blue o del oro
+    function obtenerCotizacion(moneda) {
+      let cotizacion;
+      if (moneda === 'dolar') {
+        cotizacion = prompt('Introduce la cotización del dólar blue:');
+        document.getElementById('dolar').value = cotizacion;
+      } else if (moneda === 'oro') {
+        cotizacion = prompt('Introduce la cotización del oro:');
+        document.getElementById('oro').value = cotizacion;
+      }
     }
 
-    obtenerCotizacion();
-
+    // Función para calcular la conversión de dólar blue y oro a pesos argentinos
     function calcular() {
-      const dolar = document.getElementById('dolar').value;
-      const oro = document.getElementById('oro').value;
-      const pesos = dolar * oro;
-      document.getElementById('resultado').textContent = 'Resultado: ' + pesos + ' pesos argentinos';
+      const cotizacionDolar = document.getElementById('dolar').value;
+      const cotizacionOro = document.getElementById('oro').value;
+      const montoDolar = prompt('Introduce el monto en dólares a convertir:');
+      const montoOro = prompt('Introduce el monto en gramos de oro a convertir:');
+      const resultadoDolar = montoDolar * cotizacionDolar;
+      const resultadoOro = montoOro * cotizacionOro;
+      const resultadoFinal = resultadoDolar + resultadoOro;
+      const resultadoElemento = document.getElementById('resultado');
+      resultadoElemento.innerHTML = `El resultado de la conversión es: ${resultadoFinal.toFixed(2)} pesos argentinos.`;
     }
   </script>
 </body>
