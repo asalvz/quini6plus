@@ -10,8 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	
-	<span class="jadeex">JadeEx</span>
-
+	
   
   <style>
 	  .background {
@@ -21,11 +20,19 @@
   overflow: hidden; /* ocultar burbujas que se salgan de la pantalla */
   position: relative; /* posicionamiento relativo para burbujas absolutas */
 }
-	  .jadeex {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Cambia esta propiedad por la fuente que prefieras */
-  font-size: 36px;
+	.jadeex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.jadeex {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 72px;
   text-shadow: 0px 0px 10px #fff, 0px 0px 20px #fff, 0px 0px 30px #fff, 0px 0px 40px #40ff00, 0px 0px 70px #40ff00, 0px 0px 80px #40ff00, 0px 0px 100px #40ff00, 0px 0px 150px #40ff00;
   animation: blink 2s infinite;
+  transform: rotate(-20deg);
 }
 
 @keyframes blink {
@@ -33,6 +40,7 @@
     opacity: 0;
   }
 }
+
 
 
 .bubble {
@@ -128,6 +136,8 @@ width:30%;
 	
 
   </style>
+	
+
   <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
   
 <script src="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js"></script>
@@ -144,6 +154,11 @@ width:30%;
   <div class="bubble bubble3"></div>
   <div class="bubble bubble4"></div>
   <div class="bubble bubble5"></div>
+
+	
+	<div class="jadeex-container">
+  <span class="jadeex">JadeEx</span>
+</div>
 
 <div class="card-container">
   <div class="card">	
