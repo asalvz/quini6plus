@@ -35,7 +35,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 72px;
   text-shadow: 0px 0px 10px #fff, 0px 0px 20px #fff, 0px 0px 30px #fff, 0px 0px 40px #40ff00, 0px 0px 70px #40ff00, 0px 0px 80px #40ff00, 0px 0px 100px #40ff00, 0px 0px 150px #40ff00;
-  animation: blink 2s infinite;
+  animation: blink 2s infinite, grow 1s ease-in-out alternate infinite, move 2s ease-in-out infinite;
   transform: rotate(-20deg);
 }
 
@@ -44,6 +44,28 @@
     opacity: 0;
   }
 }
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(-50px);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(-50px);
+  }
+}
+
 
 
 
@@ -151,9 +173,10 @@ width:30%;
 
 
 </head>
-	 <div class="jadeex-container">
+	<div class="jadeex-container">
   <span class="jadeex">JadeEx</span>
 </div>
+
 <body>
 <div class="background">
 	 
