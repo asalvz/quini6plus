@@ -34,6 +34,8 @@
       }
     </style>
   </head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.6/web3.min.js"></script>
+
   <body>
     <!-- Agregar la card para mostrar los datos -->
     <div class="card" id="account-card" style="display:none;">
@@ -94,9 +96,8 @@ $('#account-network').text(`Network: ${networkName}`);
 $('#account-balance-eth').text(`ETH Balance: ${balanceEth} ETH`);
 $('#account-balance-token').text(`Token Balance: ${balanceToken} TOKEN`);
 $('#account-card').show();
-	      
-	      $('#account-balance-eth').text(`ETH Balance: ${balanceEth} ETH`);
-$('#account-balance-token').text(`Token Balance: ${balanceToken} TOKEN`);
+$('#account-balance').text(`ETH Balance: ${balanceEth} ETH / Token Balance: ${balanceToken} TOKEN`);
+
 	  </script>
 
 
