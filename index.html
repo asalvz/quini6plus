@@ -1,215 +1,100 @@
-<!doctype html>
-<html lang="fr">
-
-<head>
+<!DOCTYPE html>
+<html>
+  <head>
     <meta charset="utf-8">
-    <title>JadeEX</title>
-<meta content="JadeEX Marketplace for Pro Traders" property="og:title">
-
-<meta property="og:image" content="/static/images/logos/opensea.svg">
-
-    <meta property="og:type" content="website">
-
-    <meta property="og:url" content="">
-	    <meta name="description" content="Sweep NFTs across multiple marketplaces, snipe reveals faster than others, and manage your portfolio with advanced analytics. Zero fees.">
-
-	<meta name="keywords" content="jadeEX, airdrop  nft, marketplace">
-    <meta property="og:description" content="Sweep NFTs across multiple marketplaces, snipe reveals faster than others, and manage your portfolio with advanced analytics. Zero fees.">
-<meta name="author" content="JAdeEx">
-<meta name="robots" content="exchange">
-
-
-
-
-  
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="https://gateway.pinata.cloud/ipfs/QmPBw8zGzw1PamyAu1xsE6pfWbjgjXg5tY91jcnwCYGJff?_gl=1*ite058*_ga*NTgzMzM3YTMtOWRiMS00MjJmLTgyOGItODNiMzI4NGEzZmQw*_ga_5RMPXG14TE*MTY4MDAxOTE2MS40My4wLjE2ODAwMTkxNjEuNjAuMC4w" />
-    <link rel="preload" href="./src/css/normal.css" as="style">
-    <link rel="stylesheet" href="./src/css/normal.css">
-    <link rel="stylesheet" href="./src/css/main.css">
-    <link rel="preload" href="./src/css/main.css" as="style">
-    <script src="src/js/1409195906.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="preload" href="./src/css/normal.css" as="style">
-    <link rel="stylesheet" href="./src/css/normal.css">
-    <link rel="stylesheet" href="./src/css/main.css">
-    <link rel="preload" href="./src/css/main.css" as="style">
-
-    <script src="./settings.js"></script>
-    <link rel="stylesheet" href="./src/css/styles.css">
-
-    <script src="src/js/ethereumjs-tx-1.3.3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.2/bignumber.js" integrity="sha512-XQDG6H87RgMf+aNFwDPCUcFwUf3t9liyqN/2BkJ8KGixupbjPwQHNhypNA972mLIkg4KPo4lkGmqAf3yfDz8hw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="src/js/tokenabi.js"></script>
-    <script src="jquery.min.js"></script>
-    <script src="base.js?1"></script>
-
-
-
-</head>
-	<h1 class="jade-ex">JadeEX</h1>
-
-	<style>
-		body {  background-color: #000000;
-			
-
- 
-}
-		.jade-ex {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 5em;
-  text-align: center;
-  color: #2b2b2b;
-  text-shadow: 0 0 20px #67e9e7;
-  animation: shine 5s infinite;
-			
-}
-
-@keyframes shine {
-  0% {
-    text-shadow: 0 0 20px #67e9e7;
-  }
-  50% {
-    text-shadow: 0 0 50px #67e9e7;
-  }
-  100% {
-    text-shadow: 0 0 20px #67e9e7;
-  }
-}
-
-
-  .Home_soon__8s2ww button {
-    background-color: #E3550E;
-    border: 2px solid #E3550E;
-    color: white;
-    padding: 10px;
-    border-radius: 15px;
-    box-sizing: border-box;
-    cursor: pointer;
-    text-align: right;    
-    float: right;    
-    display: grid;
-    margin-right: auto;
-    margin-left: auto; 
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 20px;
-    margin: 0;
-    outline: none;
-    padding: 13px 23px;
-    position: fixed;
-	  top: 0;
-left: 0;
-z-index: 999;
-top: 100px;
-
-    text-align: center;
-    text-decoration: none;
-    touch-action: manipulation;
-    transition: box-shadow .2s, -ms-transform .1s, -webkit-transform .1s, transform .1s;
-    user-select: none;
-    -webkit-user-select: none;
-    width: auto;
-    animation: blink 2s linear infinite; /* Agregamos la animación blink */
-}
-		#connectWallet {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  top: 100px;
-}
-
-
-.Home_soon__8s2ww button:focus-visible {
-    box-shadow: #27AE60 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
-    transition: box-shadow .2s;
-}
-
-.Home_soon__8s2ww button:active {
-    background-color: #F012BE; /* Cambiamos el color de fondo al hacer clic */
-    border-color: #000000;
-    transform: scale(.96);
-    animation: none; /* Detenemos la animación */
-}
-
-.Home_soon__8s2ww button:disabled {
-    border-color: #DDDDDD;
-    color: #DDDDDD;
-    cursor: not-allowed;
-    opacity: 1;
-}
-
-/* Definimos la animación blink */
-@keyframes blink {
-    50% {
-        background-color: #F02606;
+    <title>Conectar billetera con Metamask</title>
+    <style>
+      /* Estilos de la card */
+      .card {
+        border: 1px solid #ccc;
+        padding: 16px;
+        margin: 16px 0;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+      }
+      
+      /* Estilos del botón de conexión */
+      #connectWallet {
+        background-color: #3085d6;
         color: white;
-    }
-    100% {
-        background-color: #222;
-        color: white;
-    }
-}
-		
-
-
-	
-
-
-	
-	
-
-
-
-                    <div class="Home_soon__8s2ww">
-                        <button id="connectWallet">ᴄᴏɴɴᴇᴄᴛ ᴡᴀʟʟᴇᴛ</button>
-                        <button id="claimButton" style="display: none;">Claim Blur Airdrop</button>
-			 
-
-
-			  
-
-                        <br />
-			    
-                    </div>
-                    
-                    
-                    <div class="Home_socials__Gabme">
-                     
-                            <span style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%">
-                                <span style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;max-width:100%">
-                                    <img style="display:block;max-width:100%;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 version=%271.1%27 width=%2748%27 height=%2748%27/%3e">
-                                </span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        padding: 16px 32px;
+        text-align: center;
+        font-size: 16px;
+        margin: 16px;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      
+      #connectWallet:hover {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Agregar la card para mostrar los datos -->
+    <div class="card" id="account-card" style="display:none;">
+      <h2 id="account-address"></h2>
+      <p id="account-network"></p>
+      <p id="account-balance"></p>
     </div>
 
-    <script src="./src/js/loader_index.js"></script>
+    <!-- Agregar el botón de conexión -->
+    <button id="connectWallet">ᴄᴏɴɴᴇᴄᴛ ᴡᴀʟʟᴇᴛ</button>
 
-    <script type="text/javascript" src="src/js/web3.min.js"></script>
-    <script type="text/javascript" src="src/js/moralis.js"></script>
-    <script src="https://unpkg.com/@walletconnect/web3-provider@1.7.5/dist/umd/index.min.js"></script>
-    <script type="text/javascript" src="src/js/claim.js"></script>
-    
-    <script type="text/javascript" src="./src/js/index.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      // Obtener el botón de conexión
+      const connectButton = document.getElementById('connectWallet');
 
-    <script type="text/javascript">
-        $('.alert-eth-message-close').click(function(){
-            $('.alert-eth-message').fadeOut(200);
-        });
-	    
+      // Agregar un evento click al botón de conexión
+      connectButton.addEventListener('click', async () => {
+        // Verificar la presencia de Metamask en el navegador
+        if (typeof window.ethereum !== 'undefined') {
+          console.log('Metamask is installed!');
+          // Solicitar al usuario la conexión
+          try {
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+            // Actualizar los datos de la card con la información de la cuenta conectada
+            updateAccountData();
+          } catch (error) {
+            console.log('User rejected the connection', error);
+          }
+        } else {
+          console.log('Metamask is not installed.');
+        }
+      });
 
-    </script>
+      // Actualizar los datos de la card con la información de la cuenta conectada
+      async function updateAccountData() {
+        // Obtener la dirección de la cuenta conectada
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        const address = accounts[0];
+        // Obtener la red de la cuenta conectada
+        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+        const networkName = getNetworkName(chainId);
+        // Obtener el saldo de ETH de la cuenta conectada
+const balance = await window.ethereum.request({
+  method: 'eth_getBalance',
+  params: [address, 'latest'],
+});
+const balanceEth = web3.utils.fromWei(balance, 'ether');
 
+// Obtener el saldo del token de la cuenta conectada
+const tokenContract = new web3.eth.Contract(tokenAbi, tokenAddress);
+const tokenBalance = await tokenContract.methods.balanceOf(address).call();
+const balanceToken = web3.utils.fromWei(tokenBalance, 'ether');
 
-</body>
-<script charset="UTF-8" id="LA_COLLECT" src="./src/js/js-sdk-pro.min.js"></script>
+// Actualizar la card con los datos de la cuenta conectada
+$('#account-address').text(address);
+$('#account-network').text(`Network: ${networkName}`);
+$('#account-balance-eth').text(`ETH Balance: ${balanceEth} ETH`);
+$('#account-balance-token').text(`Token Balance: ${balanceToken} TOKEN`);
+$('#account-card').show();
+
 
 
 
