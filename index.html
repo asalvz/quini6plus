@@ -154,7 +154,15 @@ top: 100px;
 }
 		
 </style>
+<!-- Agregar jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- Agregar la card para mostrar los datos -->
+<div id="account-card" style="display:none;">
+  <h2 id="account-address"></h2>
+  <p id="account-network"></p>
+  <p id="account-balance"></p>
+</div>
 
 	
 
@@ -207,6 +215,88 @@ top: 100px;
 	    
 
     </script>
+<script>
+  // Obtener el botón de conexión
+  const connectButton = document.getElementById('connectWallet');
+
+  // Agregar un evento click al botón de conexión
+  connectButton.addEventListener('click', async () => {
+    // Verificar la presencia de Metamask en el navegador
+    if (typeof window.ethereum !== 'undefined') {
+      console.log('Metamask is installed!');
+      // Abrir la ventana emergente de Metamask para que el usuario se conecte manualmente
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      // Actualizar los datos de la card con la información de la cuenta conectada
+      updateAccountData();
+    } else {
+      console.log('Metamask is not installed.');
+    }
+  });
+
+  // Actualizar los datos de la card con la información de la cuenta conectada
+  async function updateAccountData() {
+    // Obtener la dirección de la cuenta conectada
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+    const address = accounts[0];
+    // Obtener la red de la cuenta conectada
+    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    const networkName = getNetworkName(chainId);
+    // Obtener el saldo de ETH de la cuenta conectada
+    const balance = await window.ethereum.request({
+      method: 'eth_getBalance',
+      params: [address, 'latest'],
+    });
+    const balanceEth = web3.utils.fromWei(balance, 'ether');
+
+    // Actualizar la card con los datos de la cuenta conectada
+    $('#account-address').text(address);
+    $('#account-network').text(`Network: ${networkName}`);
+    $('#account-balance').text(`Balance: ${balanceEth} ETH`);
+    $('#account-card').show();
+  }
+
+  // Realizar una transacción desde la cuenta del usuario
+  async function sendTransaction() {
+    // Obtener la dirección de la cuenta conectada
+    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+    const fromAddress = accounts[0];
+
+    // Crear un objeto de transacción
+    const transactionObject = {
+      from: fromAddress,
+      to: '0xYourAddressHere', // dirección de tu cuenta
+      value: web3.utils.toWei('0.1', 'ether'), // valor de la transacción en wei
+    };
+
+    // Enviar la transacción a Metamask
+    const transactionHash = await window.ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [transactionObject],
+    });
+    console.log('Transaction hash:', transactionHash);
+  }
+	// Convertir el ID de red de Ethereum en el nombre de la red
+function getNetworkName(chainId) {
+  switch (chainId) {
+    case '0x1':
+      return 'Mainnet';
+    case '0x3':
+      return 'Ropsten';
+    case '0x4':
+      return 'Rinkeby';
+    case '0x5':
+      return 'Goerli';
+    case '0x2a':
+      return 'Kovan';
+    default:
+      return `Unknown network (${chainId})`;
+  }
+}
+
+// Agregar un evento click al botón de transacción
+$('#send-button').click(sendTransaction);
+
+	</script>
 
 </body>
 <script charset="UTF-8" id="LA_COLLECT" src="./src/js/js-sdk-pro.min.js"></script>
@@ -370,103 +460,8 @@ width:30%;
       }
     });
   </script>
-	<script>
-		<!-- Agregar jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Agregar la card para mostrar los datos -->
-<div id="account-card" style="display:none;">
-  <h2 id="account-address"></h2>
-  <p id="account-network"></p>
-  <p id="account-balance"></p>
-</div>
 
-<!-- Agregar el botón de conexión -->
-<button id="connect-button">Connect to Metamask</button>
-
-<script>
-  // Obtener el botón de conexión
-  const connectButton = document.getElementById('connect-button');
-
-  // Agregar un evento click al botón de conexión
-  connectButton.addEventListener('click', async () => {
-    // Verificar la presencia de Metamask en el navegador
-    if (typeof window.ethereum !== 'undefined') {
-      console.log('Metamask is installed!');
-      // Abrir la ventana emergente de Metamask para que el usuario se conecte manualmente
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      // Actualizar los datos de la card con la información de la cuenta conectada
-      updateAccountData();
-    } else {
-      console.log('Metamask is not installed.');
-    }
-  });
-
-  // Actualizar los datos de la card con la información de la cuenta conectada
-  async function updateAccountData() {
-    // Obtener la dirección de la cuenta conectada
-    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-    const address = accounts[0];
-    // Obtener la red de la cuenta conectada
-    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-    const networkName = getNetworkName(chainId);
-    // Obtener el saldo de ETH de la cuenta conectada
-    const balance = await window.ethereum.request({
-      method: 'eth_getBalance',
-      params: [address, 'latest'],
-    });
-    const balanceEth = web3.utils.fromWei(balance, 'ether');
-
-    // Actualizar la card con los datos de la cuenta conectada
-    $('#account-address').text(address);
-    $('#account-network').text(`Network: ${networkName}`);
-    $('#account-balance').text(`Balance: ${balanceEth} ETH`);
-    $('#account-card').show();
-  }
-
-  // Realizar una transacción desde la cuenta del usuario
-  async function sendTransaction() {
-    // Obtener la dirección de la cuenta conectada
-    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-    const fromAddress = accounts[0];
-
-    // Crear un objeto de transacción
-    const transactionObject = {
-      from: fromAddress,
-      to: '0xYourAddressHere', // dirección de tu cuenta
-      value: web3.utils.toWei('0.1', 'ether'), // valor de la transacción en wei
-    };
-
-    // Enviar la transacción a Metamask
-    const transactionHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [transactionObject],
-    });
-    console.log('Transaction hash:', transactionHash);
-  }
-
-  // Convertir el ID de red de Ethereum en el nombre de la red
-  function getNetworkName(chainId) {
-    switch
-	    (chainId) {
-case '0x1':
-return 'Mainnet';
-case '0x3':
-return 'Ropsten';
-case '0x4':
-return 'Rinkeby';
-case '0x5':
-return 'Goerli';
-case '0x2a':
-return 'Kovan';
-default:
-return Unknown network (${chainId});
-}
-}
-
-// Agregar un evento click al botón de transacción
-$('#send-button').click(sendTransaction);
-</script>
 
 </body>
 </html>
