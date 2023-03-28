@@ -127,73 +127,7 @@ top: 100px;
         color: white;
     }
 }
-		.background {
-  background-color: #000000; /* fondo negro */
-  height: 100vh; /* altura total de la pantalla */
-  width: 100%; /* ancho total de la pantalla */
-  overflow: hidden; /* ocultar burbujas que se salgan de la pantalla */
-  position: relative; /* posicionamiento relativo para burbujas absolutas */
-}
-
-.bubble {
-  position: absolute; /* posicionamiento absoluto */
-  bottom: 0; /* comenzar desde abajo */
-  border-radius: 50%; /* forma de burbuja */
-  animation-name: bubble-up; /* animación de burbuja */
-  animation-duration: 3s; /* duración de la animación */
-  animation-iteration-count: infinite; /* animación infinita */
-}
-
-.bubble1 {
-  width: 30px;
-  height: 30px;
-  background-color: rgba(255, 255, 255, 0.5); /* burbuja blanca transparente */
-  left: calc(50% - 90px);
-  animation-delay: 1s; /* retrasar animación */
-}
-
-.bubble2 {
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.7); /* burbuja blanca transparente */
-  left: calc(50% - 70px);
-  animation-delay: 2s; /* retrasar animación */
-}
-
-.bubble3 {
-  width: 70px;
-  height: 70px;
-  background-color: rgba(255, 255, 255, 0.9); /* burbuja blanca transparente */
-  left: calc(50% - 35px);
-  animation-delay: 3s; /* retrasar animación */
-}
-
-.bubble4 {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.6); /* burbuja blanca transparente */
-  left: calc(50% + 5px);
-  animation-delay: 4s; /* retrasar animación */
-}
-
-.bubble5 {
-  width: 60px;
-  height: 60px;
-  background-color: rgba(255, 255, 255, 0.8); /* burbuja blanca transparente */
-  left: calc(50% + 35px);
-  animation-delay: 5s; /* retrasar animación */
-}
-
-@keyframes bubble-up {
-  0% {
-    transform: translateY(0); /* burbuja sin movimiento */
-  }
-  100% {
-    transform: translateY(-100vh); /* burbuja en movimiento hacia arriba */
-  }
-}
-
-
+		
 </style>
 
 
@@ -263,6 +197,74 @@ top: 100px;
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Cotización de Bitcoin</title>
   <style>
+	  .background {
+  background-color: #000000; /* fondo negro */
+  height: 100vh; /* altura total de la pantalla */
+  width: 100%; /* ancho total de la pantalla */
+  overflow: hidden; /* ocultar burbujas que se salgan de la pantalla */
+  position: relative; /* posicionamiento relativo para burbujas absolutas */
+}
+
+.bubble {
+  position: absolute; /* posicionamiento absoluto */
+  bottom: 0; /* comenzar desde abajo */
+  border-radius: 50%; /* forma de burbuja */
+  animation-name: bubble-up; /* animación de burbuja */
+  animation-duration: 3s; /* duración de la animación */
+  animation-iteration-count: infinite; /* animación infinita */
+}
+
+.bubble1 {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.5); /* burbuja blanca transparente */
+  left: calc(50% - 90px);
+  animation-delay: 1s; /* retrasar animación */
+}
+
+.bubble2 {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.7); /* burbuja blanca transparente */
+  left: calc(50% - 70px);
+  animation-delay: 2s; /* retrasar animación */
+}
+
+.bubble3 {
+  width: 70px;
+  height: 70px;
+  background-color: rgba(255, 255, 255, 0.9); /* burbuja blanca transparente */
+  left: calc(50% - 35px);
+  animation-delay: 3s; /* retrasar animación */
+}
+
+.bubble4 {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.6); /* burbuja blanca transparente */
+  left: calc(50% + 5px);
+  animation-delay: 4s; /* retrasar animación */
+}
+
+.bubble5 {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.8); /* burbuja blanca transparente */
+  left: calc(50% + 35px);
+  animation-delay: 5s; /* retrasar animación */
+}
+
+@keyframes bubble-up {
+  0% {
+    transform: translateY(0); /* burbuja sin movimiento */
+  }
+  100% {
+    transform: translateY(-100vh); /* burbuja en movimiento hacia arriba */
+  }
+}
+
+
+	  
     .card {
       width: 25%;
       margin: 1rem;
@@ -298,6 +300,7 @@ top: 100px;
 
 </head>
 <body>
+	
 	
 
   <div class="card">
