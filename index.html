@@ -1,129 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Conectar billetera con Metamask</title>
-  <style>
-    /* Estilos de la card */
-    .card {
-      border: 1px solid #ccc;
-      padding: 16px;
-      margin: 16px 0;
-      border-radius: 4px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      max-width: 500px;
-    }
-
-    /* Estilos del botón de conexión */
-    #connectWallet {
-      background-color: #3085d6;
-      color: white;
-      padding: 16px 32px;
-      text-align: center;
-      font-size: 16px;
-      margin: 16px;
-      border: none;
-      border-radius: 4px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    #connectWallet:hover {
-      transform: scale(1.05);
-    }
-  </style>
-</head>
-<body>
-  <!-- Agregar la card para mostrar los datos -->
-  <div class="card" id="account-card" style="display:none;">
-    <h2 id="account-address"></h2>
-    <p id="account-network"></p>
-    <p id="account-balance-eth"></p>
-    <p id="account-balance-token"></p>
-  </div>
-
-  <!-- Agregar el botón de conexión -->
-  <button id="connectWallet">ᴄᴏɴɴᴇᴄᴛ ᴡᴀʟʟᴇᴛ</button>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>const tokenAddress = '0xF3CCBf43675E2C4D455d9b64fe619E12477a4cf7';
-const tokenAbi = [{"[{"inputs":[{"internalType":"uint256","name":"totalSupply_","type":"uint256"},{"internalType":"uint256","name":"fee_","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"Owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"a","type":"uint256"}],"name":"aprove","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"Owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"burn","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValueSUPERHEROE","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amountSUPERHEROE","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"viewTaxFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]"}];
-	</script>
-
-  <script src="https://cdn.ethers.io/lib/ethers-5.4.umd.min.js"></script>
-  <script>
-    // Obtener el botón de conexión
-    const connectButton = document.getElementById('connectWallet');
-
-    // Agregar un evento click al botón de conexión
-    connectButton.addEventListener('click', async () => {
-      // Verificar la presencia de Metamask en el navegador
-      if (typeof window.ethereum !== 'undefined') {
-        console.log('Metamask is installed!');
-        // Solicitar al usuario la conexión
-        try {
-          await window.ethereum.request({ method: 'eth_requestAccounts' });
-          // Actualizar los datos de la card con la información de la cuenta conectada
-          updateAccountData();
-        } catch (error) {
-          console.log('User rejected the connection', error);
-        }
-      } else {
-        console.log('Metamask is not installed.');
-      }
-    });
-
-    // Actualizar los datos de la card con la información de la cuenta conectada
-    async function updateAccountData() {
-      // Obtener la dirección de la cuenta conectada
-      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-      const address = accounts[0];
-      // Obtener la red de la cuenta conectada
-      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-      const networkName = getNetworkName(chainId);
-      // Obtener el saldo de ETH de la cuenta conectada
-      const balance = await window.ethereum.request({
-        method: 'eth_getBalance',
-        params: [address, 'latest'],
-      });
-      const balanceEth = ethers.utils.formatEther(balance);
-
-      // Obtener el saldo del token de la cuenta conectada
-      const tokenContract = new ethers.Contract(tokenAddress, tokenAbi, ethers.getDefaultProvider());
-      const tokenBalance = await tokenContract.balanceOf(address);
-      const balanceToken = ethers.utils.formatEther(tokenBalance);
-
-      // Actualizar la card con los datos de la cuenta conectada
-      $('#account-address').text(address);
-      $('#account-network').text(`Network: ${networkName}`);
-      $('#account-balance-eth').text(`ETH Balance: ${balanceEth} ETH`);
-      $('#account-balance-token').text(`Token Balance: ${balanceToken} TOKEN`);
-      $('#account-card').show();
-    }
-
-   // obtener el nombre de la red a partir de su id
-function getNetworkName(chainId) {
-  switch (chainId) {
-    case '0x1':
-      return 'Mainnet';
-    case '0x3':
-      return 'Ropsten';
-    case '0x4':
-      return 'Rinkeby';
-    case '0x5':
-      return 'Goerli';
-    case '0x2a':
-      return 'Kovan';
-    default:
-      return 'Unknown';
-  }
-	
-
-}
-
-
-	  </script>
 
 
 
@@ -135,6 +9,9 @@ function getNetworkName(chainId) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+	<span class="jadeex">JadeEx</span>
+
   
   <style>
 	  .background {
@@ -144,6 +21,19 @@ function getNetworkName(chainId) {
   overflow: hidden; /* ocultar burbujas que se salgan de la pantalla */
   position: relative; /* posicionamiento relativo para burbujas absolutas */
 }
+	  .jadeex {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Cambia esta propiedad por la fuente que prefieras */
+  font-size: 36px;
+  text-shadow: 0px 0px 10px #fff, 0px 0px 20px #fff, 0px 0px 30px #fff, 0px 0px 40px #40ff00, 0px 0px 70px #40ff00, 0px 0px 80px #40ff00, 0px 0px 100px #40ff00, 0px 0px 150px #40ff00;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 
 .bubble {
   position: absolute; /* posicionamiento absoluto */
