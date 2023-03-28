@@ -289,6 +289,71 @@ top: 100px;
     .positive-change {
       color: green;
     }
+	  .background {
+  background-color: #000000; /* fondo negro */
+  height: 100vh; /* altura total de la pantalla */
+  overflow: hidden; /* ocultar burbujas que se salgan de la pantalla */
+  position: relative; /* posicionamiento relativo para burbujas absolutas */
+}
+
+.bubble {
+  position: absolute; /* posicionamiento absoluto */
+  bottom: 0; /* comenzar desde abajo */
+  border-radius: 50%; /* forma de burbuja */
+  animation-name: bubble-up; /* animación de burbuja */
+  animation-duration: 3s; /* duración de la animación */
+  animation-iteration-count: infinite; /* animación infinita */
+}
+
+.bubble1 {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.5); /* burbuja blanca transparente */
+  left: 10%;
+  animation-delay: 1s; /* retrasar animación */
+}
+
+.bubble2 {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.7); /* burbuja blanca transparente */
+  left: 20%;
+  animation-delay: 2s; /* retrasar animación */
+}
+
+.bubble3 {
+  width: 70px;
+  height: 70px;
+  background-color: rgba(255, 255, 255, 0.9); /* burbuja blanca transparente */
+  left: 30%;
+  animation-delay: 3s; /* retrasar animación */
+}
+
+.bubble4 {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.6); /* burbuja blanca transparente */
+  left: 40%;
+  animation-delay: 4s; /* retrasar animación */
+}
+
+.bubble5 {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.8); /* burbuja blanca transparente */
+  left: 50%;
+  animation-delay: 5s; /* retrasar animación */
+}
+
+@keyframes bubble-up {
+  0% {
+    transform: translateY(0); /* burbuja sin movimiento */
+  }
+  100% {
+    transform: translateY(-100vh); /* burbuja en movimiento hacia arriba */
+  }
+}
+
   </style>
   <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
   
@@ -300,6 +365,14 @@ top: 100px;
 
 </head>
 <body>
+	<div class="background">
+  <div class="bubble bubble1"></div>
+  <div class="bubble bubble2"></div>
+  <div class="bubble bubble3"></div>
+  <div class="bubble bubble4"></div>
+  <div class="bubble bubble5"></div>
+</div>
+
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Cotización de Bitcoin</h5>
