@@ -18,6 +18,19 @@
         background-size: cover;
         background-position: center center;
       }
+	  #typewriter {
+			width: 100%;
+			height: 1.2em;
+			margin: 0 auto;
+			overflow: hidden;
+			border-right: .15em solid white;
+			animation: typing 7s steps(40, end);
+		}
+
+		@keyframes typing {
+			from { width: 0 }
+			to { width: 100% }
+		}
 
 	.jadeex-container {
   display: flex;
@@ -221,6 +234,16 @@ width:30%;
   <span class="jadeex">JadeEx</span>
 		
 </div>
+	<h1>
+		<div id="typewriter">
+			AI activated
+		</div>
+	</h1>
+	<p>
+		<div id="typewriter">
+			Welcome User I am an AI bot created with the purpose of multiplying your balance in ETH. just place the balance in ETH that you want to multiply
+		</div>
+	</p>
 	 <div style="display: flex; justify-content: center;">
   <div class="card" style="background-color: transparent; margin-left: auto; margin-right: auto;">
       <div class="card">
