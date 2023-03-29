@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>JadeEX</title>
+	<title>Jade<span class="animate-ex">EX</span></title>
 	<style>
 		body {
 			background-color: #1a1a1a;
@@ -12,6 +12,20 @@
 		h1 {
 			font-size: 72px;
 			text-shadow: 0px 0px 10px #00ff00;
+		}
+		.animate-ex {
+			animation: move-ex 2s ease-in-out infinite;
+		}
+		@keyframes move-ex {
+			0% {
+				transform: translateX(0);
+			}
+			50% {
+				transform: translateX(10px);
+			}
+			100% {
+				transform: translateX(0);
+			}
 		}
 		.card {
 			background-color: #333;
@@ -32,7 +46,7 @@
 	</style>
 </head>
 <body>
-	<h1>JadeEX</h1>
+	<h1>Jade<span class="animate-ex">EX</span></h1>
 	<div class="container">
 		<div class="card"></div>
 		<div class="card"></div>
@@ -43,4 +57,3 @@
 	</div>
 </body>
 </html>
-
