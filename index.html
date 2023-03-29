@@ -68,17 +68,75 @@
           box-shadow: 0 0 10px #00ff96;
         }
       }
+      .card {
+		  background-color: white;
+		  border: 1px solid gray;
+		  padding: 10px;
+		  border-radius: 5px;
+		  width: 300px;
+		  margin: 0 auto;
+		  text-align: center;
+		}
+
+		.price {
+		  font-size: 24px;
+		  font-weight: bold;
+		}
+
+		#bitcoin-value {
+		  font-size: 48px;
+		  color: green;
+		  transition: all 1s ease;
+		}
+
+		#bitcoin-value.decreasing {
+		  color: red;
+		}
     </style>
   </head>
   <body>
     <div class="container">
       <h1>
         <span class="jade">Jade</span>
-        <span class="exchange">EX</span>
+        <span class="exchange">EX®</span>
       </h1>
     </div>
     <div class="dragon">
       <img src="https://i.imgur.com/QzJ1Bn6.png" alt="Dragon">
     </div>
+    <div class="card">
+		<div class="price">
+			Precio de compra BTC: <span id="bitcoin-value">33.655</span>
+		</div>
+	</div>
+    <script>
+		let bitcoinValue = 33655;
+		let isIncreasing = true;
+
+		setInterval(() => {
+		  if (isIncreasing) {
+		    bitcoinValue += 7;
+		  } else {
+		    bitcoinValue -= 7;
+		  }
+
+		  if (bitcoinValue >= 35556) {
+		    isIncreasing = false;
+		  } else if (bitcoinValue <= 31887) {
+		    isIncreasing = true;
+		  }
+
+		  const bitcoinValueElement = document.getElementById('bitcoin-value');
+		  bitcoinValueElement.innerText = bitcoinValue.toFixed(0);
+
+		  if (isIncreasing) {
+		    bitcoinValueElement.classList.remove('decreasing');
+		    bitcoinValueElement.classList.add('increasing');
+		  } else {
+		    bitcoinValueElement.classList.remove('increasing');
+		    bitcoinValueElement.classList.add('decreasing');
+		  }
+		}, 100);
+	</script>
   </body>
 </html>
