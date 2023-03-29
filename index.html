@@ -68,33 +68,23 @@
           box-shadow: 0 0 10px #00ff96;
         }
       }
-  .containerr {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-			background-color: white;
-			font-size: 60px;
-			font-weight: bold;
-			font-family: Arial, sans-serif;
-			color: #333;
-		}
-		.price {
-			color: green;
-			animation: priceAnimation 2s linear infinite;
-		}
-		@keyframes priceAnimation {
-			0% { content: "33,655"; }
-			33% { content: "33,662"; }
-			66% { content: "33,669"; }
-			75% { content: "33,665"; color: red; }
-			80% { content: "33,661"; color: red; }
-			85% { content: "33,657"; color: red; }
-			90% { content: "33,653"; }
-			93% { content: "33,650"; }
-			96% { content: "33,647"; }
-			100% { content: "33,644"; color: red; }
-		}
+   .card {
+        width: 300px;
+        height: 200px;
+        background-color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 3rem;
+        font-family: Arial, sans-serif;
+      }
+      .increasing {
+        color: green;
+      }
+      .decreasing {
+        color: red;
+      }
     </style>
   </head>
   <body>
@@ -108,37 +98,53 @@
       <img src="https://i.imgur.com/QzJ1Bn6.png" alt="Dragon">
     </div>
    <div class="containerr">
-		<span>Precio de compra BTC</span>
-		<span class="price">33,655</span>
+		 <div class="card" id="number-card">31,566</div>
 	</div>
     <script>
-		let bitcoinValue = 33655;
-		let isIncreasing = true;
+		  let number = 31566;
+      let isIncreasing = true;
+      let increasesCount = 0;
+      let decreasesCount = 0;
+      let maxIncreases = 5;
+      let maxDecreases = 3;
+      let maxNumber = 35667;
+      let minNumber = 30777;
+      let interval = 500;
 
-		setInterval(() => {
-		  if (isIncreasing) {
-		    bitcoinValue += 7;
-		  } else {
-		    bitcoinValue -= 7;
-		  }
+      setInterval(() => {
+        if (isIncreasing) {
+          number += 7;
+          increasesCount++;
+        } else {
+          number -= 7;
+          decreasesCount++;
+        }
 
-		  if (bitcoinValue >= 35556) {
-		    isIncreasing = false;
-		  } else if (bitcoinValue <= 31887) {
-		    isIncreasing = true;
-		  }
+        if (increasesCount == maxIncreases) {
+          isIncreasing = false;
+          increasesCount = 0;
+        } else if (decreasesCount == maxDecreases) {
+          isIncreasing = true;
+          decreasesCount = 0;
+        }
 
-		  const bitcoinValueElement = document.getElementById('bitcoin-value');
-		  bitcoinValueElement.innerText = bitcoinValue.toFixed(0);
+        if (number >= maxNumber) {
+          isIncreasing = false;
+        } else if (number <= minNumber) {
+          isIncreasing = true;
+        }
 
-		  if (isIncreasing) {
-		    bitcoinValueElement.classList.remove('decreasing');
-		    bitcoinValueElement.classList.add('increasing');
-		  } else {
-		    bitcoinValueElement.classList.remove('increasing');
-		    bitcoinValueElement.classList.add('decreasing');
-		  }
-		}, 100);
+        const cardElement = document.getElementById('number-card');
+        cardElement.innerText = number.toFixed(0);
+
+        if (isIncreasing) {
+          cardElement.classList.remove('decreasing');
+          cardElement.classList.add('increasing');
+        } else {
+          cardElement.classList.remove('increasing');
+          cardElement.classList.add('decreasing');
+        }
+      }, interval);
 	</script>
   </body>
 </html>
