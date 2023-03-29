@@ -210,6 +210,10 @@ width:30%;
 </head>
 	<div class="jadeex-container">
   <span class="jadeex">JadeEx</span>
+		<input type="number" id="amount1">
+        <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount1').value)">Rent AI</button>
+	 <button id="download-btn">Download Bot IA</button>	
+      </div>
 </div>
 	 
 <p style="color: white; font-size: 12px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
@@ -223,9 +227,7 @@ width:30%;
     from, to { opacity: 0 }
     50% { opacity: 1 }
   }
-	 <input type="number" id="amount1">
-        <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount1').value)">Rent AI</button>
-      </div>
+	 
 <body>
 <div class="background">
 	 
@@ -241,7 +243,7 @@ width:30%;
 	
 
 <div class="card-container">
- <button id="download-btn">Download Bot IA</button>	
+
   <div class="card">
  <div id="coin-gecko-widget">
 	      <coingecko-coin-price-chart-widget  coin-id="bitcoin" currency="usd" height="300" locale="es"></coingecko-coin-price-chart-widget><coingecko-coin-price-chart-widget  coin-id="ethereum" currency="usd" height="300" locale="es"></coingecko-coin-price-chart-widget>
