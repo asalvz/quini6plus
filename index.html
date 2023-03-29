@@ -8,25 +8,38 @@
 			color: #00ff00;
 			font-size: 24px;
 			text-align: center;
-		}
 		h1 {
-			font-size: 72px;
-			text-shadow: 0px 0px 10px #00ff00;
-		}
-		.animate-ex {
-			animation: move-ex 2s ease-in-out infinite;
-		}
-		@keyframes move-ex {
-			0% {
-				transform: translateX(0);
-			}
-			50% {
-				transform: translateX(10px);
-			}
-			100% {
-				transform: translateX(0);
-			}
-		}
+  font-size: 3em;
+  text-align: center;
+  color: #333;
+}
+
+.animate-ex {
+  position: relative;
+  display: inline-block;
+}
+
+.animate-ex::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 100%;
+  height: 5px;
+  background-color: #1abc9c;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.5s ease;
+}
+
+.animate-ex:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
+
+
 		.card {
 			background-color: #333;
 			color: #fff;
