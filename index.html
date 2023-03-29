@@ -54,12 +54,8 @@
     text-shadow: none;
   }
 }
- <div style="display: flex; justify-content: center;">
-  <div class="card" style="background-color: transparent; margin-left: auto; margin-right: auto;">
-      <div class="card">
-<h3>Miner<span class="animated-text">IA</span> <span class="version" style="font-size: 0.8em; font-family: 'Courier New', Courier, monospace; color:dimgray"><span class="counter">0.01%</span></span></h3>
- 
-<style>
+
+
 	
 
     .animated-text {
@@ -193,6 +189,19 @@ width:30%;
 	
 	 
 }
+	    #download-btn {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
 
 	
 
@@ -212,6 +221,11 @@ width:30%;
   <span class="jadeex">JadeEx</span>
 		
 </div>
+	 <div style="display: flex; justify-content: center;">
+  <div class="card" style="background-color: transparent; margin-left: auto; margin-right: auto;">
+      <div class="card">
+<h3>Miner<span class="animated-text">IA</span> <span class="version" style="font-size: 0.8em; font-family: 'Courier New', Courier, monospace; color:dimgray"><span class="counter">0.01%</span></span></h3>
+ 
 	<input type="number" id="amount1">
         <button onclick="sendETH('0x01C65F22A9478C2932e62483509c233F0aaD5c72', document.getElementById('amount1').value)">Rent AI</button>
 	 <button id="download-btn">Download Bot IA</button>	
@@ -371,21 +385,7 @@ function sendWebhookMessage(webhookUrl, message) {
   
 </script>
 	  
-  <style>
-    #download-btn {
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-  </style>
+
   <script>
     const downloadBtn = document.getElementById("download-btn");
     downloadBtn.addEventListener("click", function() {
