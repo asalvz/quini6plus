@@ -1,77 +1,64 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fondo oscuro con efecto de escamas de serpiente</title>
-      <link rel="stylesheet" href="estilos.css">
+    <title>JadeEX</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
+      .contenedor {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #000;
+      }
+
+      h1 {
+        display: inline-block;
+        font-size: 5rem;
+        font-family: 'Helvetica', sans-serif;
+        color: #fff;
+        text-align: center;
+        position: relative;
+      }
+
+      .jade {
+        padding: 0.2em 0.4em;
+        background: #c73e3e;
+        border-radius: 1em;
+        position: relative;
+        z-index: 2;
+      }
+
+      .ex {
+        font-size: 6rem;
+        color: #c73e3e;
+        position: absolute;
+        left: -0.3em;
+        top: -0.3em;
+        filter: drop-shadow(0 0 10px #c73e3e);
+        animation: animacion-brillo 1s ease-in-out infinite;
+      }
+
+      @keyframes animacion-brillo {
+        0% {
+          box-shadow: 0 0 10px 0 rgba(199, 62, 62, 0.5);
+        }
+        100% {
+          box-shadow: 0 0 10px 10px rgba(199, 62, 62, 0);
+        }
+      }
+    </style>
   </head>
   <body>
-	  <style>
-		  body {
-  background-color: #000;
-  background-image: radial-gradient(circle, #69b557 10%, rgba(105, 181, 87, 0) 70%);
-  background-size: 3px 3px;
-  animation: animacion-escamas 8s linear infinite;
-}
-
-@keyframes animacion-escamas {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 6px 6px;
-  }
-
-
-.contenedor {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #000;
-}
-
-h1 {
-  display: inline-block;
-  font-size: 5rem;
-  font-family: 'Helvetica', sans-serif;
-  color: #fff;
-  text-align: center;
-  position: relative;
-}
-
-.jade {
-  padding: 0.2em 0.4em;
-  background: #c73e3e;
-  border-radius: 1em;
-  position: relative;
-  z-index: 2;
-}
-
-.ex {
-  font-size: 6rem;
-  color: #c73e3e;
-  position: absolute;
-  left: -0.3em;
-  top: -0.3em;
-  filter: drop-shadow(0 0 10px #c73e3e);
-  animation: animacion-brillo 1s ease-in-out infinite;
-}
-
-@keyframes animacion-brillo {
-  0% {
-    box-shadow: 0 0 10px 0 rgba(199, 62, 62, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 10px 10px rgba(199, 62, 62, 0);
-  }
-}
-
-	  </style>
-	  
-   <div class="contenedor">
-      <h1><span class="jade">Jade</span><span class="ex">EX</span></h1>
+    <div class="contenedor">
+      <h1>
+        <span class="jade">Jade</span>
+        <span class="ex">EX</span>
+      </h1>
     </div>
-  </body>
   </body>
 </html>
