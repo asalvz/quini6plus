@@ -78,6 +78,10 @@
         color: white;
         font-size: 3rem;
         font-family: Arial, sans-serif;
+	   font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
       }
       .increasing {
         color: green;
@@ -85,6 +89,12 @@
       .decreasing {
         color: red;
       }
+	    .containerr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
     </style>
   </head>
   <body>
@@ -98,8 +108,13 @@
       <img src="https://i.imgur.com/QzJ1Bn6.png" alt="Dragon">
     </div>
    <div class="containerr">
-		 <div class="card" id="number-card">31,566</div>
-	</div>
+  <h2>Compra y vende bitcoin y recibe usdt. la mejor cotizacion</h2>
+  <div class="card" id="number-card">
+    <span>31,566</span>
+    <p>Descripción del número aquí</p>
+  </div>
+</div>
+
     <script>
 		  let number = 31566;
       let isIncreasing = true;
