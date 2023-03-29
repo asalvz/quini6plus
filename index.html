@@ -1,72 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Jade<span class="animate-ex">EX</span></title>
+	<meta charset="utf-8">
+	<title>Mi sitio de intercambio</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 	<style>
 		body {
-			background-color: #1a1a1a;
-			color: #00ff00;
-			font-size: 24px;
-			text-align: center;
-		h1 {
-  font-size: 3em;
-  text-align: center;
-  color: #333;
-}
+			font-family: 'Roboto', sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f1f1f1;
+		}
 
-.animate-ex {
-  position: relative;
-  display: inline-block;
-}
-
-.animate-ex::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 100%;
-  height: 5px;
-  background-color: #1abc9c;
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  transition: transform 0.5s ease;
-}
-
-.animate-ex:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-
-
-
-		.card {
+		.header {
 			background-color: #333;
 			color: #fff;
-			display: inline-block;
-			height: 300px;
-			margin: 20px;
-			width: 300px;
+			padding: 20px;
+			text-align: center;
 		}
-		.buy-sell {
-			background-color: #1a1a1a;
+
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+
+		h1 {
+			font-weight: 500;
+			font-size: 2.5rem;
+			margin: 0 0 20px;
+		}
+
+		p {
+			font-size: 1.2rem;
+			line-height: 1.5;
+			margin: 0 0 20px;
+		}
+
+		.button {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #333;
 			color: #fff;
-			font-size: 36px;
-			margin-top: 50px;
-			padding: 50px;
-			text-shadow: 0px 0px 10px #00ff00;
+			border: none;
+			border-radius: 5px;
+			font-size: 1.2rem;
+			cursor: pointer;
+		}
+
+		.button:hover {
+			background-color: #555;
 		}
 	</style>
 </head>
 <body>
-	<h1>Jade<span class="animate-ex">EX</span></h1>
+	<header class="header">
+		<h1>Mi sitio de intercambio</h1>
+	</header>
+
 	<div class="container">
-		<div class="card"></div>
-		<div class="card"></div>
-		<div class="card"></div>
-	</div>
-	<div class="buy-sell">
-		<p>Compra y vende tus criptomonedas con nosotros</p>
+		<p>Bienvenido a mi sitio de intercambio, donde puedes comprar y vender tus criptomonedas favoritas.</p>
+
+		<button class="button">Regístrate</button>
+		<button class="button">Iniciar sesión</button>
 	</div>
 </body>
 </html>
