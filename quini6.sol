@@ -1,15 +1,17 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
-interface IERC20 {
-    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
+import "./IERC20.sol";
 
 contract Loteria {
     uint256 public ticketPrice = 1 ether; // Precio del boleto en USDT
     uint256 public totalTickets; // Total de boletos vendidos
     uint256 public maxTickets = 100; // Cantidad máxima de boletos disponibles
     address public tokenAddress = 0x55d398326f99059fF775485246999027B3197955; // Dirección del contrato USDT en BSC
+   
+    IERC20 public token;
+
     address payable public owner;
     bool public gameActive; // Estado del juego (activo/inactivo)
     uint256 public randomNumber; // Número aleatorio generado al final del juego
@@ -18,79 +20,69 @@ contract Loteria {
         uint256 ticketsBought; // Número de boletos comprados
         bool hasClaimed; // Si ha reclamado sus premios
     }
-    
-    mapping(address => TicketHolder) public ticketHolders; // Saldo de boletos por participante
-    
-    event NewTicketSold(address indexed buyer, uint256 numberOfTickets);
-    event LotteryEnded(uint256 winningNumber, uint256 totalPrize);
-    event ClaimedPrize(address indexed claimer, uint256 prizeAmount);
-    
+
+    mapping (address => TicketHolder) public tickets; // Mapeo de direcciones a compradores de boletos
+
+    event TicketBought(address indexed buyer, uint256 ticketsBought);
+    event TicketPriceUpdated(uint256 newPrice);
+    event GameActivated();
+    event GameDeactivated();
+    event RandomNumberGenerated(uint256 randomNumber);
+    event PrizeClaimed(address indexed winner, uint256 amount);
+
     constructor() {
         owner = payable(msg.sender);
+        token = IERC20(tokenAddress);
     }
-    
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Only the owner can perform this action");
-        _;
-    }
-    
-    function startGame() external onlyOwner {
-        require(!gameActive, "Game is already active");
-        gameActive = true;
-    }
-    
-    function endGame() external onlyOwner {
-        require(gameActive, "Game is not active");
-        gameActive = false;
-        randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, totalTickets)));
-        emit LotteryEnded(randomNumber, totalTickets * ticketPrice);
-    }
-    
-    function buyTicket(uint256 numberOfTickets) external {
-        require(gameActive, "Game is not active");
-        require(totalTickets + numberOfTickets <= maxTickets, "Maximum number of tickets reached");
-        IERC20 usdtToken = IERC20(tokenAddress);
-        uint256 totalAmount = numberOfTickets * ticketPrice;
-        require(usdtToken.transferFrom(msg.sender, address(this), totalAmount), "Transfer failed");
-        ticketHolders[msg.sender].ticketsBought += numberOfTickets;
-        totalTickets += numberOfTickets;
-        emit NewTicketSold(msg.sender, numberOfTickets);
-    }
-    
-    function claimPrize() external {
-        require(!ticketHolders[msg.sender].hasClaimed, "You have already claimed your prize");
-        require(!gameActive, "Game is still active");
-        uint256 prizeAmount = calculatePrize(msg.sender);
-        require(prizeAmount > 0, "You did not win a prize");
-        ticketHolders[msg.sender].hasClaimed = true;
-        IERC20 usdtToken = IERC20(tokenAddress);
-        require(usdtToken.balanceOf(address(this)) >= prizeAmount, "Not enough funds to pay prize");
-        require(usdtToken.transfer(msg.sender, prizeAmount), "Transfer failed");
-        emit ClaimedPrize(msg.sender, prizeAmount);
-    }
-    
-    function calculatePrize(address ticketHolder) public view returns (uint256) {
-require(!gameActive, "Game is still active");
-require(totalTickets > 0, "No tickets were sold");
-if (randomNumber == 0) {
-return 0; // Si el número ganador no fue generado, no hay premios
-}
-uint256 holderTickets = ticketHolders[ticketHolder].ticketsBought;
-if (holderTickets == 0) {
-return 0; // Si el participante no tiene boletos, no hay premio
-}
-uint256 winningTicket = randomNumber % totalTickets + 1;
-if (winningTicket <= holderTickets) {
-uint256 prizePool = totalTickets * ticketPrice;
-uint256 prizeAmount = prizePool * 80 / 100; // El premio es el 80% del total recaudado
-return prizeAmount / holderTickets;
-}
-return 0; // Si el participante no tiene el boleto ganador, no hay premio
-}
-function withdrawFunds() external onlyOwner {
-    require(!gameActive, "Game is still active");
-    IERC20 usdtToken = IERC20(tokenAddress);
-    require(usdtToken.balanceOf(address(this)) > 0, "No funds to withdraw");
-    require(usdtToken.transfer(owner, usdtToken.balanceOf(address(this))), "Transfer failed");
-}
 
+    function buyTicket(uint256 _numberOfTickets) external {
+        require(gameActive, "El juego no está activo");
+        require(_numberOfTickets > 0, "Debes comprar al menos un boleto");
+        require(totalTickets + _numberOfTickets <= maxTickets, "No hay suficientes boletos disponibles");
+
+        uint256 priceInTokens = _numberOfTickets * ticketPrice;
+        require(token.allowance(msg.sender, address(this)) >= priceInTokens, "Debes aprobar la transferencia de USDT");
+
+        token.transferFrom(msg.sender, address(this), priceInTokens);
+        totalTickets += _numberOfTickets;
+        tickets[msg.sender].ticketsBought += _numberOfTickets;
+
+        emit TicketBought(msg.sender, _numberOfTickets);
+    }
+
+    function updateTicketPrice(uint256 _newPrice) external {
+        require(msg.sender == owner, "Solo el dueño puede actualizar el precio del boleto");
+        ticketPrice = _newPrice;
+
+        emit TicketPriceUpdated(_newPrice);
+    }
+
+    function activateGame() external {
+        require(msg.sender == owner, "Solo el dueño puede activar el juego");
+        require(!gameActive, "El juego ya está activo");
+
+        gameActive = true;
+
+        emit GameActivated();
+    }
+
+    function deactivateGame() external {
+        require(msg.sender == owner, "Solo el dueño puede desactivar el juego");
+        require(gameActive, "El juego ya está desactivado");
+
+        gameActive = false;
+
+        emit GameDeactivated();
+    }
+
+    function generateRandomNumber() external {
+        require(msg.sender == owner, "Solo el dueño puede generar el número aleatorio");
+        require(!gameActive, "El juego debe estar desactivado para generar el número aleatorio");
+
+        randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty)));
+
+        emit RandomNumberGenerated(randomNumber);
+    }
+
+    function claimPrize() external {
+        require(gameActive == false, "El juego todavía está activ
