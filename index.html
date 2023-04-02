@@ -5,6 +5,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
+	<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+	<script>
+		const web3 = new Web3("https://bsc-dataseed1.binance.org:443");
+		 const web3 = new Web3("https://bsc-dataseed1.binance.org:443");
+const contractAddress = "0xCE8996E36EF19df9af3d6F0aA6Bf3d6c698C7f03"; // Dirección del contrato
+const contractABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_from","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_number","type":"uint256"}],"name":"Bet","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_winner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"}],"name":"Winner","type":"event"},{"inputs":[{"internalType":"uint256","name":"_number","type":"uint256"}],"name":"bet","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"bets","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"feePercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getNextPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getWinningNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextPercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"winnerPercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"winningNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]; // Interfaz de aplicación del contrato
+const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+		const betButton = document.getElementById("bet-button");
+betButton.addEventListener("click", () => {
+  const number = /* Obtener el número de apuesta del usuario */;
+  const value = /* Obtener el valor de la apuesta del usuario */;
+  contract.methods.bet(number).send({ value: value })
+    .on("receipt", (receipt) => {
+      /* La transacción se ha completado correctamente */
+    })
+    .on("error", (error) => {
+      /* Ha ocurrido un error al ejecutar la transacción */
+    });
+});
+
+	</script>
 </head>
 <body>
 	<header>
@@ -17,7 +39,8 @@
 		<form id="betForm">
 			<label for="number">Ingresa tu número de apuesta (0-99):</label>
 			<input type="number" id="number" name="number" min="0" max="99" required>
-			<button type="submit">Apostar</button>
+			<button type="submit" id="apostar-btn">Apostar</button>
+
 		</form>
 		<div id="result"></div>
 	</main>
@@ -51,5 +74,7 @@
 			font-weight: bold;
 		}
 	</style>
+	
+                 
 </body>
 </html>
