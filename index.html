@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BNB BET</title>
+    <title>BNB  bet</title>
     <style>
       body {
         margin: 0;
@@ -64,6 +64,10 @@
         background-color: #1a6ca9;
       }
 
+      .animate {
+        animation: blink 1s infinite;
+      }
+
       @keyframes slide-in {
         from {
           transform: translateY(-100%);
@@ -72,18 +76,29 @@
           transform: translateY(0);
         }
       }
+
+      @keyframes blink {
+        0% {
+          color: yellow;
+        }
+        50% {
+          color: #fff;
+        }
+        100% {
+          color: yellow;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">BNB Bet</h5>
-        <h5> Solo compras el boleto y si tu numero de hash coincide con el numero ganador</h5>
-        <h1> Te llevas el pozo acumulado actual de BNB al Instante !</h5>
         <p class="card-text">El pot actual es: <span id="pot"></span> BNB</p>
         <p class="card-text">El siguiente pot es: <span id="next-pot"></span> BNB</p>
-        <p class="card-text">Número ganador del sorteo : <span id="winning-number"></span></p>
+        <p class="card-text">Número ganador del sorteo anterior: <span id="winning-number"></span></p>
         <button class="btn btn-primary" onclick="bet()">Comprar boleto (0.01 BNB)</button>
+        <h1 class="animate">Te llevas el pozo acumulado actual de BNB al Instante !</h1>
       </div>
     </div>
 
