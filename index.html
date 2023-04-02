@@ -1,155 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Contrato de apuestas</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://cdn.jsdelivr.net/npm/@metamask/detect-provider/dist/detect-provider.min.js"></script>
+  <head>
+    <title>Sorteo de Betting</title>
+  </head>
+  <body>
+   <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Sorteo de la Suerte</h5>
+    <p class="card-text">El pot actual es: <span id="pot"></span> BNB</p>
+    <p class="card-text">El siguiente pot es: <span id="next-pot"></span> BNB</p>
+    <p class="card-text">Número ganador del sorteo anterior: <span id="winning-number"></span></p>
+    <button class="btn btn-primary" onclick="bet()">Comprar boleto (0.01 BNB)</button>
+  </div>
+</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
-	<script>
-		const web3 = new Web3("https://bsc-dataseed1.binance.org:443");
-		const contractAddress = "0xCE8996E36EF19df9af3d6F0aA6Bf3d6c698C7f03"; // Dirección del contrato
-		const contractABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_from","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_number","type":"uint256"}],"name":"Bet","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_winner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"}],"name":"Winner","type":"event"},{"inputs":[{"internalType":"uint256","name":"_number","type":"uint256"}],"name":"bet","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"bets","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"feePercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getNextPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getWinningNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextPercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"winnerPercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"winningNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]
-		const contract = new web3.eth.Contract(contractABI, contractAddress);
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script>
+  const contractAddress = '0xCE8996E36EF19df9af3d6F0aA6Bf3d6c698C7f03'; // Cambiar por la dirección de tu contrato
+  const abi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_from","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_number","type":"uint256"}],"name":"Bet","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_winner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"}],"name":"Winner","type":"event"},{"inputs":[{"internalType":"uint256","name":"_number","type":"uint256"}],"name":"bet","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"bets","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"feePercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getNextPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getWinningNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextPercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"winnerPercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"winningNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]; // Cambiar por el ABI de tu contrato
+  const web3 = new Web3(window.ethereum);
 
-		const betForm = document.getElementById("betForm");
-		betForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const number = document.getElementById("number").value;
-  const value = web3.utils.toWei("0.1", "ether"); // Aquí se puede ajustar la cantidad apostada
-
-  // Solicita la autorización del usuario
-  const provider = await detectEthereumProvider();
-  if (!provider) {
-    console.error("MetaMask no detectado");
-    return;
-  }
-  const accounts = await provider.request({ method: "eth_requestAccounts" });
-  const account = accounts[0];
-
-  // Realiza la transacción mediante MetaMask
-  contract.methods.bet(number).send({ from: account, value: value })
-    .on("transactionHash", (hash) => {
-      // La transacción se ha enviado correctamente
-      console.log("Hash de transacción:", hash);
-    })
-    .on("receipt", (receipt) => {
-      // La transacción se ha completado correctamente
-      console.log("Recibo de transacción:", receipt);
-      updateInfo();
-    })
-    .on("error", (error) => {
-      // Ha ocurrido un error al ejecutar la transacción
-      console.error(error);
+  const bettingContract = new web3.eth.Contract(abi, contractAddress);
+  
+  function updateState() {
+    bettingContract.methods.getPot().call().then((pot) => {
+      document.getElementById('pot').innerHTML = pot / 10**18;
     });
-});
-
-		});
-
-		function updateInfo() {
-			contract.methods.getWinningNumber().call().then((winningNumber) => {
-				document.getElementById("winningNumber").textContent = winningNumber;
-			});
-			contract.methods.getPot().call().then((pot) => {
-				document.getElementById("pot").textContent = web3.utils.fromWei(pot, "ether");
-			});
-			contract.methods.getNumBets().call().then((numBets) => {
-				document.getElementById("numBets").textContent = numBets;
-			});
-			contract.methods.getBets().call().then((bets) => {
-				const betNumbers = bets.map(bet => bet.number);
-				document.getElementById("betNumbers").textContent = betNumbers.join(", ");
-			});
-		}
-
-		window.addEventListener("load", () => {
-			updateInfo();
-		});
-		
-		
-		const connectButton = document.getElementById("connectButton");
-
-// Maneja la conexión/desconexión de MetaMask
-async function handleConnect() {
-  const provider = await detectEthereumProvider();
-  if (!provider) {
-    console.error("MetaMask no detectado");
-    return;
+    bettingContract.methods.getNextPot().call().then((nextPot) => {
+      document.getElementById('next-pot').innerHTML = nextPot / 10**18;
+    });
+    bettingContract.methods.getWinningNumber().call().then((winningNumber) => {
+      document.getElementById('winning-number').innerHTML = winningNumber;
+    });
   }
-  if (provider.connected) {
-    // Desconecta la cuenta de MetaMask
-    await provider.request({ method: "eth_logout" });
-    connectButton.textContent = "Conectar MetaMask";
-  } else {
-    // Conecta la cuenta de MetaMask
-    const accounts = await provider.request({ method: "eth_requestAccounts" });
-    const account = accounts[0];
-    connectButton.textContent = account.slice(0, 6) + "..." + account.slice(-4);
+
+  function bet() {
+    web3.eth.requestAccounts().then((accounts) => {
+      bettingContract.methods.bet(Math.floor(Math.random() * 100)).send({ from: accounts[0], value: web3.utils.toWei('0.01', 'ether') })
+      .on('transactionHash', (hash) => {
+        console.log('Transaction hash:', hash);
+        updateState();
+      })
+      .on('error', (error) => {
+        console.error('Error:', error);
+      });
+    });
   }
-  updateInfo();
-}
 
-// Actualiza la página cuando se cambia de cuenta o se cambia de red
-ethereum.on("accountsChanged", () => {
-  updateInfo();
-});
-ethereum.on("chainChanged", () => {
-  updateInfo();
-});
-
-connectButton.addEventListener("click", handleConnect);
-
-	</script>
-</head>
-<body>
-	<header>
-		<h1>Contrato de apuestas</h1>
-		<p>Último número ganador: <span id="winningNumber"></span></p>
-		<p>Pot actual: <span id="pot"></span> BNB</p>
-		<p>Número de apuestas: <span id="numBets"></span></p>
-		<p>Números apostados: <span id="betNumbers"></span></p>
-	</header>
-	<main>
-		<form id="betForm">
-			<label for="number">Ingresa tu número de apuesta (0-99):</label>
-			<input type="number" id="number" name="number" min="0" max="99" required>
-			<button type="submit">Apostar</button>
-			<button id="connectButton">Conectar MetaMask</button>
-
-		</form>
-	</main>
-	<footer>
-		<p>Derechos de autor © 2023</p>
-	</footer>
-	<script src="app.js"></script>
-	<style>
-		header {
-			text-align: center;
-			margin-bottom: 20px;
-		}
-
-		form {
-			margin-bottom: 20px;
-		}
-
-		input[type="number"] {
-			width: 50px;
-			margin-right: 10px;
-		}
-
-		button[type="submit"] {
-			cursor: pointer;
-		}
-
-		#result {
-			margin-top: 20px;
-			text-align: center;
-			font-size: 20px;
-			font-weight: bold;
-		}
-	</style>
-	
-                 
-</body>
+  updateState();
+</script>
+  </body>
 </html>
+
