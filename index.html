@@ -7,35 +7,6 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<style>
-		header {
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-form {
-	margin-bottom: 20px;
-}
-
-input[type="number"] {
-	width: 50px;
-	margin-right: 10px;
-}
-
-button[type="submit"] {
-	cursor: pointer;
-}
-
-#result {
-	margin-top: 20px;
-	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
-}
-	</style>
-	
-	
-	
 	<header>
 		<h1>Contrato de apuestas</h1>
 		<p>Último número ganador: <span id="winningNumber"></span></p>
@@ -54,86 +25,31 @@ button[type="submit"] {
 		<p>Derechos de autor © 2023</p>
 	</footer>
 	<script src="app.js"></script>
+	<style>
+		header {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+
+		form {
+			margin-bottom: 20px;
+		}
+
+		input[type="number"] {
+			width: 50px;
+			margin-right: 10px;
+		}
+
+		button[type="submit"] {
+			cursor: pointer;
+		}
+
+		#result {
+			margin-top: 20px;
+			text-align: center;
+			font-size: 20px;
+			font-weight: bold;
+		}
+	</style>
 </body>
-	<script>
-		// Conexión a la red Binance Smart Chain
-const Web3 = require("web3");
-const web3 = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed.binance.org/"));
-
-// Dirección y ABI del contrato
-const contractAddress = "0xCE8996E36EF19df9af3d6F0aA6Bf3d6c698C7f03"; // Aquí iría la dirección del contrato
-const contractABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_from","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_number","type":"uint256"}],"name":"Bet","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_winner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"}],"name":"Winner","type":"event"},{"inputs":[{"internalType":"uint256","name":"_number","type":"uint256"}],"name":"bet","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"bets","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"feePercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getNextPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getWinningNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextPercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextPot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pot","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"winnerPercentage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"winningNumber","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]; // Aquí iría el ABI del contrato
-
-// Creación de una instancia del contrato
-const bettingContract = new web3.eth.Contract(contractABI, contractAddress);
-
-// Función para mostrar el último número ganador
-function showWinningNumber() {
-  bettingContract.methods.getWinningNumber().call()
-    .then(result => {
-      const winningNumber = document.getElementById("winningNumber");
-      winningNumber.textContent = result;
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
-
-// Función para mostrar el pot actual
-function showPot() {
-  bettingContract.methods.getPot().call()
-    .then(result => {
-      const pot = document.getElementById("pot");
-      pot.textContent = result;
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
-
-// Función para mostrar el siguiente pot
-function showNextPot() {
-  bettingContract.methods.getNextPot().call()
-    .then(result => {
-      const nextPot = document.getElementById("nextPot");
-      nextPot.textContent = result;
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
-
-// Función para realizar una apuesta
-function placeBet(event) {
-  event.preventDefault();
-
-  const number = document.getElementById("number").value;
-
-  bettingContract.methods.bet(number).send({
-    from: web3.eth.defaultAccount,
-    value: web3.utils.toWei("0.01", "ether")
-  })
-    .then(result => {
-      console.log(result);
-      const betForm = document.getElementById("betForm");
-      betForm.reset();
-      const resultDiv = document.getElementById("result");
-      resultDiv.textContent = "¡Apuesta realizada con éxito! Esperando al próximo número ganador...";
-    })
-    .catch(error => {
-      console.error(error);
-      const resultDiv = document.getElementById("result");
-      resultDiv.textContent = "Error al realizar la apuesta. Asegúrate de enviar 0.01 BNB y de no haber apostado anteriormente.";
-    });
-}
-
-// Mostrar la información inicial
-showWinningNumber();
-showPot();
-showNextPot();
-
-// Escuchar el envío del formulario de apuesta
-const betForm = document.getElementById("betForm");
-betForm.addEventListener("submit", placeBet);
-
 </html>
