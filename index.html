@@ -2,17 +2,90 @@
 <html>
   <head>
     <title>Sorteo de Betting</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #121212;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .card {
+        background-color: #222;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        width: 400px;
+        max-width: 90%;
+        animation-name: slide-in;
+        animation-duration: 1s;
+      }
+
+      .card-body {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .card-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .card-text {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      #pot,
+      #next-pot,
+      #winning-number {
+        font-weight: bold;
+      }
+
+      button {
+        background-color: #1c8adb;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      button:hover {
+        background-color: #1a6ca9;
+      }
+
+      @keyframes slide-in {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+    </style>
   </head>
   <body>
-   <div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Sorteo de la Suerte</h5>
-    <p class="card-text">El pot actual es: <span id="pot"></span> BNB</p>
-    <p class="card-text">El siguiente pot es: <span id="next-pot"></span> BNB</p>
-    <p class="card-text">Número ganador del sorteo anterior: <span id="winning-number"></span></p>
-    <button class="btn btn-primary" onclick="bet()">Comprar boleto (0.01 BNB)</button>
-  </div>
-</div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Sorteo de la Suerte</h5>
+        <p class="card-text">El pot actual es: <span id="pot"></span> BNB</p>
+        <p class="card-text">El siguiente pot es: <span id="next-pot"></span> BNB</p>
+        <p class="card-text">Número ganador del sorteo anterior: <span id="winning-number"></span></p>
+        <button class="btn btn-primary" onclick="bet()">Comprar boleto (0.01 BNB)</button>
+      </div>
+    </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script>
