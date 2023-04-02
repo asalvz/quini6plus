@@ -26,5 +26,21 @@
 	</footer>
 	<script src="app.js"></script>
 </body>
+	<script>
+	const betButton = document.getElementById("bet-button");
+		betButton.addEventListener("click", () => {
+  // Aquí es donde iría el código de la función de apuesta
+});
+const Web3 = require("web3");
+const web3 = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed.binance.org/"));
+
+const contractAddress = "0x..."; // Aquí iría la dirección del contrato
+const contractABI = [{...}]; // Aquí iría el ABI del contrato
+
+const bettingContract = new web3.eth.Contract(contractABI, contractAddress);
+
+// Aquí es donde irían las funciones que interactúan con el contrato
+
+
 </html>
 
